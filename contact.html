@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>contact-astha hospital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  
+<style>
+
+   body {
+    background: url('contactus.jpg') no-repeat center center/cover;
+    min-height: 100vh;
+}
+
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.35);
+        border-radius: 25px;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 40px;
+    }
+
+    .tab-btn {
+        padding: 8px 25px;
+        border-radius: 30px;
+        border: 2px solid transparent;
+        background: #4dd6a2;
+        color: #fff;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .tab-btn.inactive {
+        background: transparent;
+        border: 2px solid #000;
+        color: #000;
+    }
+
+    .form-control, .form-select {
+        border: none;
+        border-bottom: 1px solid #777;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    .submit-btn {
+        background: #005a9c;
+        color: #fff;
+        padding: 10px 50px;
+        border-radius: 30px;
+        border: none;
+    }
+
+    .icon-circle {
+        width: 55px;
+        height: 55px;
+        background: #0067cf;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+    }
+</style>
+
+
+</head>
+  <body>
+  <nav  class="navbar navbar-expand-lg bg-info-subtle " data-bs-theme="light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Astha bai</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success m-2" type="submit">Search</button>
+       </form>
+       <button class="btn btn-outline-success m-2" type="submit">Login</button>
+       <button class="btn btn-outline-success m-2" type="submit">Signup</button>
+   
+    </div>
+  </div>
+</nav>
+
+<div class="container py-5">
+
+    <h2 class="text-center text-white mb-5">Contact Us</h2>
+
+    <div class="row g-4 justify-content-center">
+
+        <!-- LEFT FORM -->
+        <div class="col-lg-7">
+            <div class="glass-card">
+
+                <div class="mb-4">
+                    <button class="tab-btn">Enquiry</button>
+                    <button class="tab-btn inactive">Feedback</button>
+                </div>
+
+                <form>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Name *</label>
+                            <input type="text" class="form-control" placeholder="Enter Your Name">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Mobile Number *</label>
+                            <input type="text" class="form-control" placeholder="0000000000">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Email *</label>
+                            <input type="email" class="form-control" placeholder="Email@gmail.com">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Department *</label>
+                            <select class="form-select">
+                                <option>Select Department</option>
+                                <option>Cardiology</option>
+                                <option>Neurology</option>
+                                <option>Orthopedic</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Your Message *</label>
+                        <textarea class="form-control" rows="5" placeholder="Enter Your Message Here"></textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <!-- RIGHT DETAILS -->
+        <div class="col-lg-4">
+            <div class="glass-card h-100">
+
+                <h5>Contact Details</h5>
+                <div class="d-flex align-items-center mb-4 mt-3">
+                    <div class="icon-circle"><i class="bi bi-telephone-fill"></i></div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">Phone Number</h6>
+                        <p class="mb-0">+91-800-700-6611</p>
+                    </div>
+                </div>
+
+                <h6>Follow Us</h6>
+                <div class="d-flex gap-3 mt-3">
+                    <i class="bi bi-facebook fs-4"></i>
+                    <i class="bi bi-instagram fs-4"></i>
+                    <i class="bi bi-youtube fs-4"></i>
+                    <i class="bi bi-linkedin fs-4"></i>
+                    <i class="bi bi-twitter-x fs-4"></i>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>

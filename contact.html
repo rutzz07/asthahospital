@@ -1,88 +1,185 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>contact-astha hospital</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  
-<style>
 
-   body {
-    background: url('contactus.jpg') no-repeat center center/cover;
-    min-height: 100vh;
-}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact - Astha Hospital</title>
 
-      .navbar.fixed-top-custom {
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <!-- Bootstrap Icons (needed for bi- icons) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    /* PAGE BACKGROUND */
+    body {
+      background: url('contactus.jpg') no-repeat center center/cover;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0; /* NO EXTRA SPACE ABOVE NAVBAR */
+    }
+
+    /* NAVBAR (SAME BEHAVIOUR AS INDEX) */
+    .navbar.fixed-top-custom {
       position: sticky;
       top: 0;
-      z-index: 2000;
+      z-index: 1040 !important;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
       backdrop-filter: blur(6px);
     }
 
-      .navbar.fixed-top-custom {
-      z-index: 1040 !important;
+    .modal-backdrop {
+      z-index: 1055 !important;
     }
 
+    .modal {
+      z-index: 1060 !important;
+    }
 
-
+    /* GLASS CARD */
     .glass-card {
-        background: rgba(255, 255, 255, 0.35);
-        border-radius: 25px;
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 40px;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 25px;
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 40px;
     }
 
+    /* TAB BUTTONS */
     .tab-btn {
-        padding: 8px 25px;
-        border-radius: 30px;
-        border: 2px solid transparent;
-        background: #4dd6a2;
-        color: #fff;
-        margin-right: 10px;
-        cursor: pointer;
+      padding: 8px 25px;
+      border-radius: 30px;
+      border: 2px solid transparent;
+      background: #4dd6a2;
+      color: #fff;
+      margin-right: 10px;
+      cursor: pointer;
+      font-weight: 600;
     }
 
     .tab-btn.inactive {
-        background: transparent;
-        border: 2px solid #000;
-        color: #000;
+      background: transparent;
+      border: 2px solid #000;
+      color: #000;
     }
 
-    .form-control, .form-select {
-        border: none;
-        border-bottom: 1px solid #777;
-        border-radius: 0;
-        background: transparent;
+    /* CONTACT FORM INPUTS (SCOPED TO GLASS CARD) */
+    .glass-card .form-control,
+    .glass-card .form-select {
+      border: none;
+      border-bottom: 1px solid #777;
+      border-radius: 0;
+      background: transparent;
+      color: #000;
     }
 
+    .glass-card .form-control::placeholder,
+    .glass-card textarea::placeholder {
+      color: rgba(0, 0, 0, 0.55);
+    }
+
+    /* SUBMIT BUTTON */
     .submit-btn {
-        background: #005a9c;
-        color: #fff;
-        padding: 10px 50px;
-        border-radius: 30px;
-        border: none;
+      background: #005a9c;
+      color: #fff;
+      padding: 10px 50px;
+      border-radius: 30px;
+      border: none;
+      font-weight: 600;
     }
 
+    .submit-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* ICON CIRCLE ON RIGHT CARD */
     .icon-circle {
-        width: 55px;
-        height: 55px;
-        background: #0067cf;
-        color: #fff;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 26px;
+      width: 55px;
+      height: 55px;
+      background: #0067cf;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
     }
-</style>
 
+    /* LOGIN & SIGNUP MODAL STYLING (SCOPED) */
+    #loginModal .modal-content {
+      background-image: url('llbg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 10px;
+      overflow: hidden;
+    }
 
+    #signupModal .modal-content {
+      position: relative;
+      background-image: url('llbg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 10px;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    #signupModal .modal-content::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    #signupModal .modal-header,
+    #signupModal .modal-body,
+    #signupModal .modal-footer,
+    #loginModal .modal-header,
+    #loginModal .modal-body,
+    #loginModal .modal-footer {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* LOGIN / SIGNUP INPUT STYLING (ONLY INSIDE MODALS) */
+    #loginModal .input-group-text,
+    #signupModal .input-group-text {
+      border-radius: 30px 0 0 30px !important;
+      border: none;
+    }
+
+    #loginModal .form-control,
+    #signupModal .form-control {
+      border-radius: 0 30px 30px 0 !important;
+      border: none;
+      background: #eaf3f7;
+    }
+
+    .btn-primary {
+      border-radius: 30px;
+    }
+
+    #loginModal h6 {
+      color: white !important;
+    }
+
+    .login-graphic {
+      background: linear-gradient(to bottom right, #1d8468, #246b4b);
+      /* if you want image, uncomment: */
+      /* background-image: url('llbg.jpg'); */
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
 </head>
-  <body>
-   <!-- NAVBAR (fixed) -->
+
+<body>
+
+  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg bg-info-subtle fixed-top-custom" data-bs-theme="light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Astha</a>
@@ -101,9 +198,9 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Services</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Consultation</a></li>
-              <li><a class="dropdown-item" href="#">Family Doctor</a></li>
-              <li><a class="dropdown-item" href="#">Radiology</a></li>
+              <li><a class="dropdown-item" href="bookap.html">Book Appointment</a></li>
+              <li><a class="dropdown-item" href="#">Find a Doctor</a></li>
+              <li><a class="dropdown-item" href="healthpackage.html">Health Package</a></li>
               <li><a class="dropdown-item" href="#">Pathology Test</a></li>
             </ul>
           </li>
@@ -123,96 +220,191 @@
     </div>
   </nav>
 
-<div class="container py-5">
+  <!-- LOGIN MODAL (SAME STRUCTURE AS INDEX) -->
+  <div class="modal" tabindex="-1" id="loginModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="color: whitesmoke;">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-0">
+
+          <div class="login-graphic text-white py-4 px-3 text-center">
+            <h4>Welcome to the website</h4>
+            <p style="font-size: 14px; opacity: 0.9;">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+            </p>
+          </div>
+
+          <div class="p-4">
+            <h6 class="text-center mb-4">USER LOGIN</h6>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text bg-primary text-white">
+                <i class="bi bi-person-fill"></i>
+              </span>
+              <input type="text" class="form-control" placeholder="Username">
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text bg-primary text-white">
+                <i class="bi bi-lock-fill"></i>
+              </span>
+              <input type="password" class="form-control" placeholder="Password">
+            </div>
+
+            <div class="d-flex justify-content-between small mb-3">
+              <label><input type="checkbox"> Remember</label>
+              <a href="#" class="text-primary">Forgot Password?</a>
+            </div>
+
+            <div class="text-center">
+              <button class="btn btn-primary px-5">Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNUP MODAL (SAME STRUCTURE AS INDEX) -->
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" style="color: #fff;">Signup</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <h6 class="text-center mb-4" style="color:#fff;">CREATE ACCOUNT</h6>
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-primary text-white">
+              <i class="bi bi-person-fill"></i>
+            </span>
+            <input type="text" class="form-control" placeholder="Full Name">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-primary text-white">
+              <i class="bi bi-envelope-fill"></i>
+            </span>
+            <input type="email" class="form-control" placeholder="Email">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-primary text-white">
+              <i class="bi bi-lock-fill"></i>
+            </span>
+            <input type="password" class="form-control" placeholder="Password">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-primary text-white">
+              <i class="bi bi-lock-fill"></i>
+            </span>
+            <input type="password" class="form-control" placeholder="Confirm Password">
+          </div>
+          <div class="text-center">
+            <button class="btn btn-primary px-5">Signup</button>
+          </div>
+          <div class="text-center mt-3 small">
+            Already have an account?
+            <a href="#" class="text-warning" data-bs-target="#loginModal" data-bs-toggle="modal" data-bs-dismiss="modal">
+              Login
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT CONTENT -->
+  <div class="container py-5">
 
     <h2 class="text-center text-white mb-5">Contact Us</h2>
 
     <div class="row g-4 justify-content-center">
 
-        <!-- LEFT FORM -->
-        <div class="col-lg-7">
-            <div class="glass-card">
+      <!-- LEFT FORM -->
+      <div class="col-lg-7">
+        <div class="glass-card">
 
-                <div class="mb-4">
-                    <button class="tab-btn">Enquiry</button>
-                    <button class="tab-btn inactive">Feedback</button>
-                </div>
+          <div class="mb-4">
+            <button class="tab-btn">Enquiry</button>
+            <button class="tab-btn inactive">Feedback</button>
+          </div>
 
-                <form>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label">Name *</label>
-                            <input type="text" class="form-control" placeholder="Enter Your Name">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Mobile Number *</label>
-                            <input type="text" class="form-control" placeholder="0000000000">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label">Email *</label>
-                            <input type="email" class="form-control" placeholder="Email@gmail.com">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Department *</label>
-                            <select class="form-select">
-                                <option>Select Department</option>
-                                <option>Cardiology</option>
-                                <option>Neurology</option>
-                                <option>Orthopedic</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Your Message *</label>
-                        <textarea class="form-control" rows="5" placeholder="Enter Your Message Here"></textarea>
-                    </div>
-
-                    <div class="text-center">
-                        <button type="submit" class="submit-btn">Submit</button>
-                    </div>
-                </form>
-
+          <form>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Name *</label>
+                <input type="text" class="form-control" placeholder="Enter Your Name">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Mobile Number *</label>
+                <input type="text" class="form-control" placeholder="0000000000">
+              </div>
             </div>
-        </div>
 
-        <!-- RIGHT DETAILS -->
-        <div class="col-lg-4">
-            <div class="glass-card h-100">
-
-                <h5>Contact Details</h5>
-                <div class="d-flex align-items-center mb-4 mt-3">
-                    <div class="icon-circle"><i class="bi bi-telephone-fill"></i></div>
-                    <div class="ms-3">
-                        <h6 class="mb-0">Phone Number</h6>
-                        <p class="mb-0">+91-800-700-6611</p>
-                    </div>
-                </div>
-
-                <h6>Follow Us</h6>
-                <div class="d-flex gap-3 mt-3">
-                    <i class="bi bi-facebook fs-4"></i>
-                    <i class="bi bi-instagram fs-4"></i>
-                    <i class="bi bi-youtube fs-4"></i>
-                    <i class="bi bi-linkedin fs-4"></i>
-                    <i class="bi bi-twitter-x fs-4"></i>
-                </div>
-
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Email *</label>
+                <input type="email" class="form-control" placeholder="Email@gmail.com">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Department *</label>
+                <select class="form-select">
+                  <option>Select Department</option>
+                  <option>Cardiology</option>
+                  <option>Neurology</option>
+                  <option>Orthopedic</option>
+                </select>
+              </div>
             </div>
+
+            <div class="mb-3">
+              <label class="form-label">Your Message *</label>
+              <textarea class="form-control" rows="5" placeholder="Enter Your Message Here"></textarea>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="submit-btn">Submit</button>
+            </div>
+          </form>
+
         </div>
+      </div>
+
+      <!-- RIGHT DETAILS -->
+      <div class="col-lg-4">
+        <div class="glass-card h-100">
+
+          <h5>Contact Details</h5>
+          <div class="d-flex align-items-center mb-4 mt-3">
+            <div class="icon-circle"><i class="bi bi-telephone-fill"></i></div>
+            <div class="ms-3">
+              <h6 class="mb-0">Phone Number</h6>
+              <p class="mb-0">+91-800-700-6611</p>
+            </div>
+          </div>
+
+          <h6>Follow Us</h6>
+          <div class="d-flex gap-3 mt-3">
+            <i class="bi bi-facebook fs-4"></i>
+            <i class="bi bi-instagram fs-4"></i>
+            <i class="bi bi-youtube fs-4"></i>
+            <i class="bi bi-linkedin fs-4"></i>
+            <i class="bi bi-twitter-x fs-4"></i>
+          </div>
+
+        </div>
+      </div>
 
     </div>
-</div>
+  </div>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
 
 </html>
-
-
-

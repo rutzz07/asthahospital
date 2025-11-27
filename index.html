@@ -94,6 +94,34 @@
   object-fit: cover;
 }
 
+       /* feature bar hover  */
+      
+      .feature-link {
+        padding: 20px;
+        border-left: 1px solid rgba(0, 0, 0, 0.06);
+        transition: all 0.25s ease;
+      }
+
+      .feature-link:first-child {
+        border-left: none;
+      }
+
+      .feature-link:hover {
+        background: #f0f8ff; /* soft blue */
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+        transform: translateY(-3px);
+        cursor: pointer;
+        border-radius: 12px;
+      }
+
+      .feature-item img {
+        transition: transform 0.25s ease;
+      }
+
+      .feature-link:hover img {
+        transform: scale(1.13);
+      }
+
     </style>
   </head>
   <body>
@@ -250,54 +278,79 @@
       </div>
     </section>
 
-    <!-- Feature bar (Book appointment, Find Doctor, etc.) -->
+     <!-- Feature bar (Clickable + Hover Effects) -->
     <div class="container">
       <div class="feature-bar mt-n5 mx-auto d-flex">
         <div class="d-flex w-100">
           <!-- Book an Appointment -->
-          <div class="feature-item d-flex align-items-center gap-3 flex-fill">
-            <img src="./calendar.png" alt="Book Icon" width="32" />
-            <div>
-              <div class="fw-semibold">Book an Appointment</div>
-              <div class="small text-muted">Quick & easy</div>
+          <a
+            href="#"
+            class="feature-link flex-fill text-decoration-none text-dark"
+          >
+            <div class="feature-item d-flex align-items-center gap-3">
+              <img src="./calendar.png" alt="Book Icon" width="32" />
+              <div>
+                <div class="fw-semibold">Book an Appointment</div>
+                <div class="small text-muted">Quick & easy</div>
+              </div>
             </div>
-          </div>
+          </a>
 
           <!-- Find a Doctor -->
-          <div class="feature-item d-flex align-items-center gap-3 flex-fill">
-            <img src="./doctor.png" alt="Doctor Icon" width="32" />
-            <div>
-              <div class="fw-semibold">Find a Doctor</div>
-              <div class="small text-muted">Specialists near you</div>
+          <a
+            href="#"
+            class="feature-link flex-fill text-decoration-none text-dark"
+          >
+            <div class="feature-item d-flex align-items-center gap-3">
+              <img src="./doctor.png" alt="Doctor Icon" width="32" />
+              <div>
+                <div class="fw-semibold">Find a Doctor</div>
+                <div class="small text-muted">Specialists near you</div>
+              </div>
             </div>
-          </div>
+          </a>
 
           <!-- Health Package -->
-          <div class="feature-item d-flex align-items-center gap-3 flex-fill">
-            <img src="./stethoscope.png" alt="Health Icon" width="32" />
-            <div>
-              <div class="fw-semibold">Health Package</div>
-              <div class="small text-muted">Preventive care</div>
+          <a
+            href="#"
+            class="feature-link flex-fill text-decoration-none text-dark"
+          >
+            <div class="feature-item d-flex align-items-center gap-3">
+              <img src="./stethoscope.png" alt="Health Icon" width="32" />
+              <div>
+                <div class="fw-semibold">Health Package</div>
+                <div class="small text-muted">Preventive care</div>
+              </div>
             </div>
-          </div>
+          </a>
 
           <!-- Second Opinion -->
-          <div class="feature-item d-flex align-items-center gap-3 flex-fill">
-            <img src="./opinion.png" alt="Opinion Icon" width="32" />
-            <div>
-              <div class="fw-semibold">Second Opinion</div>
-              <div class="small text-muted">Expert reviews</div>
+          <a
+            href="#"
+            class="feature-link flex-fill text-decoration-none text-dark"
+          >
+            <div class="feature-item d-flex align-items-center gap-3">
+              <img src="./opinion.png" alt="Opinion Icon" width="32" />
+              <div>
+                <div class="fw-semibold">Second Opinion</div>
+                <div class="small text-muted">Expert reviews</div>
+              </div>
             </div>
-          </div>
+          </a>
 
           <!-- Our Services -->
-          <div class="feature-item d-flex align-items-center gap-3 flex-fill">
-            <img src="./patient-care.png" alt="Services Icon" width="32" />
-            <div>
-              <div class="fw-semibold">Our Services</div>
-              <div class="small text-muted">All specialties</div>
+          <a
+            href="#"
+            class="feature-link flex-fill text-decoration-none text-dark"
+          >
+            <div class="feature-item d-flex align-items-center gap-3">
+              <img src="./patient-care.png" alt="Services Icon" width="32" />
+              <div>
+                <div class="fw-semibold">Our Services</div>
+                <div class="small text-muted">All specialties</div>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -482,3 +535,4 @@
     ></script>
   </body>
 </html>
+

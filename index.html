@@ -10,13 +10,35 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
-      /* ---------- Basic layout & hero ---------- */
-      body { background: #fff; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
-      .hero-carousel .carousel-item { height: 70vh; min-height: 360px; overflow: hidden; }
-      .hero-carousel .carousel-item img { width:100%; height:100%; object-fit: cover; }
-      .hero-carousel { padding-bottom: 140px; } /* reserve space for overlay on desktop */
+      /* ---------- FIXED NAVBAR ---------- */
+      body {
+        background: #fff;
+        padding-top: 75px; /* prevents content from hiding behind navbar */
+      }
 
-      /* ---------- Feature bar (desktop + mobile) ---------- */
+      .navbar.fixed-top-custom {
+        position: sticky;
+        top: 0;
+        z-index: 2000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        backdrop-filter: blur(6px);
+      }
+
+      /* ---------- Hero Carousel ---------- */
+      .hero-carousel .carousel-item {
+        height: 70vh;
+        min-height: 360px;
+        overflow: hidden;
+      }
+      .hero-carousel .carousel-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-carousel { padding-bottom: 140px; }
+
+      /* ---------- Feature bar styling ---------- */
       .feature-bar {
         position: relative;
         bottom: 45px;
@@ -29,34 +51,52 @@
         z-index: 105;
       }
 
-      .feature-bar .d-flex.w-100 { display:flex; flex-wrap: nowrap; }
+      .feature-bar .d-flex.w-100 {
+        display: flex;
+        flex-wrap: nowrap;
+      }
 
       .feature-link {
-        display:flex;
-        align-items:center;
+        display: flex;
+        align-items: center;
         padding: 18px 20px;
-        text-decoration:none;
-        color:inherit;
+        text-decoration: none;
+        color: inherit;
         transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-        min-height:64px;
-        border-left: none;
+        min-height: 64px;
         box-sizing: border-box;
       }
-      .feature-link + .feature-link { border-left: 1px solid rgba(0,0,0,0.06); }
 
-      .feature-item { display:flex; align-items:center; gap:16px; width:100%; }
-      .feature-item img { width:32px; height:32px; object-fit:contain; transition: transform .18s ease; }
+      .feature-link + .feature-link {
+        border-left: 1px solid rgba(0,0,0,0.06);
+      }
 
-      /* hover animation (subtle lift + scale) */
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+      }
+
+      .feature-item img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        transition: transform .18s ease;
+      }
+
       .feature-link:hover {
         transform: translateY(-6px);
         box-shadow: 0 8px 22px rgba(0,0,0,0.10);
         background: #f0f8ff;
         border-radius: 12px;
       }
-      .feature-link:hover .feature-item img { transform: scale(1.14); }
 
-      /* ---------- Responsive: stack/wrap on <=720px ---------- */
+      .feature-link:hover .feature-item img {
+        transform: scale(1.14);
+      }
+
+      /* ---------- 720px wrap ---------- */
       @media (max-width:720px) {
         .hero-carousel { padding-bottom: 0; }
         .feature-bar {
@@ -64,57 +104,58 @@
           bottom: auto !important;
           margin: 16px auto;
           width: calc(100% - 24px);
-          box-shadow: 0 8px 30px rgba(0,0,0,0.06);
         }
-        .feature-bar .d-flex.w-100 { flex-wrap: wrap; }
+        .feature-bar .d-flex.w-100 {
+          flex-wrap: wrap;
+        }
         .feature-link {
           min-width: 50%;
           flex: 0 0 50%;
           padding: 14px;
         }
         .feature-link + .feature-link { border-left: none; }
-        .feature-link:nth-child(odd) { border-right: 1px solid rgba(0,0,0,0.04); }
-        .feature-link:nth-child(n+3) { border-top: 1px solid rgba(0,0,0,0.04); }
-        .feature-link:hover { transform: none; box-shadow: none; }
-        .feature-item img { width:28px; height:28px; }
+        .feature-link:nth-child(odd) {
+          border-right: 1px solid rgba(0,0,0,0.04);
+        }
+        .feature-link:nth-child(n+3) {
+          border-top: 1px solid rgba(0,0,0,0.04);
+        }
+        .feature-link:hover {
+          transform: none;
+          box-shadow: none;
+        }
+        .feature-item img {
+          width: 28px;
+          height: 28px;
+        }
       }
 
-      /* ---------- Very narrow: horizontal scroll, arrows, fades ---------- */
+      /* ---------- 480px horizontal scroll ---------- */
       @media (max-width:480px) {
         .feature-bar {
-          position: static !important;
-          bottom: auto !important;
           margin: 12px 0;
           width: 100%;
-          border-radius: 10px;
-          overflow: visible;
         }
-
         .feature-scroll-container {
           position: relative;
-          padding: 0 36px; /* room for arrows */
+          padding: 0 36px;
         }
-
         .feature-bar .d-flex.w-100 {
           flex-wrap: nowrap;
           overflow-x: auto;
           scroll-behavior: smooth;
           -webkit-overflow-scrolling: touch;
-          scroll-snap-type: x mandatory;
           gap: 6px;
-          padding: 6px 6px;
+          padding: 6px;
+          scroll-snap-type: x mandatory;
         }
-
         .feature-link {
-          min-width: 180px; /* requested tweak */
+          min-width: 180px;
           flex: 0 0 auto;
           scroll-snap-align: start;
-          margin: 0;
-          border-radius: 10px;
-          border-left: none;
         }
 
-        /* arrows (visible only on small screens via media query) */
+        /* scroll arrows */
         .scroll-btn {
           position: absolute;
           top: 50%;
@@ -133,7 +174,7 @@
         .scroll-btn-left { left: 6px; }
         .scroll-btn-right { right: 6px; }
 
-        /* fade overlays at left & right edges */
+        /* fade edges */
         .fade-edge {
           position: absolute;
           top: 0;
@@ -142,35 +183,42 @@
           pointer-events: none;
           z-index: 15;
         }
-        .fade-left { left: 0; background: linear-gradient(90deg, rgba(246,251,255,1) 0%, rgba(246,251,255,0) 100%); }
-        .fade-right { right: 0; background: linear-gradient(270deg, rgba(246,251,255,1) 0%, rgba(246,251,255,0) 100%); }
-
-        /* scrollbar styling (WebKit) */
-        .feature-bar .d-flex.w-100::-webkit-scrollbar { height: 6px; }
-        .feature-bar .d-flex.w-100::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 6px; }
+        .fade-left {
+          left: 0;
+          background: linear-gradient(90deg, rgba(246,251,255,1), rgba(246,251,255,0));
+        }
+        .fade-right {
+          right: 0;
+          background: linear-gradient(270deg, rgba(246,251,255,1), rgba(246,251,255,0));
+        }
       }
 
-      /* ---------- Utility & footer ---------- */
+      /* footer */
       .card-img-top { height: 200px; object-fit: cover; }
       .footer-link { color: #cde2f5; text-decoration: none; }
-      .footer-link:hover { color: #fff; text-decoration: underline; }
+      .footer-link:hover { color:#fff; text-decoration: underline; }
     </style>
   </head>
 
   <body>
-    <!-- NAV -->
-    <nav class="navbar navbar-expand-lg bg-info-subtle" data-bs-theme="light">
+
+    <!-- NAVBAR (fixed) -->
+    <nav class="navbar navbar-expand-lg bg-info-subtle fixed-top-custom" data-bs-theme="light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Astha</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="#">About us</a></li>
             <li class="nav-item"><a class="nav-link" href="contact.html">Contact us</a></li>
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Services</a>
               <ul class="dropdown-menu">
@@ -182,87 +230,86 @@
             </li>
           </ul>
 
-          <form class="d-flex me-2" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <form class="d-flex me-2">
+            <input class="form-control me-2" type="search" placeholder="Search" />
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
 
-          <button class="btn btn-outline-success m-2" type="button">Login</button>
-          <button class="btn btn-outline-success m-2" type="button">Signup</button>
+          <button class="btn btn-outline-success m-2">Login</button>
+          <button class="btn btn-outline-success m-2">Signup</button>
         </div>
       </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- HERO CAROUSEL -->
     <section class="hero-carousel">
       <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active"><img src="cruser1.jpg" class="d-block w-100" alt="Slide 1" loading="lazy" /></div>
-          <div class="carousel-item"><img src="crouser2.jpg" class="d-block w-100" alt="Slide 2" loading="lazy" /></div>
-          <div class="carousel-item"><img src="placeholder.jpg" class="d-block w-100" alt="Slide 3" loading="lazy" /></div>
+          <div class="carousel-item active"><img src="cruser1.jpg" class="d-block w-100"></div>
+          <div class="carousel-item"><img src="crouser2.jpg" class="d-block w-100"></div>
+          <div class="carousel-item"><img src="placeholder.jpg" class="d-block w-100"></div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>
-        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
       </div>
     </section>
 
     <!-- FEATURE BAR -->
     <div class="container">
       <div class="feature-bar mt-n5 mx-auto">
-        <!-- feature-scroll-container wraps the scrollable area and hosts arrows & fades -->
+
         <div class="feature-scroll-container">
+          <!-- arrows only on tiny phones -->
+          <div class="scroll-btn scroll-btn-left d-md-none" id="featLeftBtn"><i class="bi bi-chevron-left"></i></div>
+          <div class="scroll-btn scroll-btn-right d-md-none" id="featRightBtn"><i class="bi bi-chevron-right"></i></div>
 
-          <!-- left arrow (visible only on small screens via CSS media query) -->
-          <div class="scroll-btn scroll-btn-left d-none d-sm-none d-md-none" id="featLeftBtn" aria-hidden="true">
-            <i class="bi bi-chevron-left"></i>
-          </div>
+          <!-- fade edges -->
+          <div class="fade-edge fade-left d-md-none" id="fadeLeft"></div>
+          <div class="fade-edge fade-right d-md-none" id="fadeRight"></div>
 
-          <!-- right arrow -->
-          <div class="scroll-btn scroll-btn-right d-none d-sm-none d-md-none" id="featRightBtn" aria-hidden="true">
-            <i class="bi bi-chevron-right"></i>
-          </div>
+          <div class="d-flex w-100" id="featureScroll">
 
-          <!-- left fade overlay -->
-          <div class="fade-edge fade-left" id="fadeLeft" aria-hidden="true" style="display:none;"></div>
-          <!-- right fade overlay -->
-          <div class="fade-edge fade-right" id="fadeRight" aria-hidden="true" style="display:none;"></div>
-
-          <!-- scrollable feature items -->
-          <div class="d-flex w-100" id="featureScroll" role="region" aria-label="Feature shortcuts">
-            <a href="#" class="feature-link" aria-label="Book appointment">
+            <a href="#" class="feature-link">
               <div class="feature-item">
-                <img src="./calendar.png" alt="calendar" />
-                <div><div class="fw-semibold">Book an Appointment</div><div class="small text-muted">Quick &amp; easy</div></div>
+                <img src="calendar.png">
+                <div><div class="fw-semibold">Book Appointment</div><div class="small text-muted">Quick & easy</div></div>
               </div>
             </a>
 
-            <a href="#" class="feature-link" aria-label="Find doctor">
+            <a href="#" class="feature-link">
               <div class="feature-item">
-                <img src="./doctor.png" alt="doctor" />
+                <img src="doctor.png">
                 <div><div class="fw-semibold">Find a Doctor</div><div class="small text-muted">Specialists</div></div>
               </div>
             </a>
 
-            <a href="#" class="feature-link" aria-label="Health package">
+            <a href="#" class="feature-link">
               <div class="feature-item">
-                <img src="./stethoscope.png" alt="stethoscope" />
+                <img src="stethoscope.png">
                 <div><div class="fw-semibold">Health Package</div><div class="small text-muted">Preventive care</div></div>
               </div>
             </a>
 
-            <a href="#" class="feature-link" aria-label="Second opinion">
+            <a href="#" class="feature-link">
               <div class="feature-item">
-                <img src="./opinion.png" alt="opinion" />
+                <img src="opinion.png">
                 <div><div class="fw-semibold">Second Opinion</div><div class="small text-muted">Expert reviews</div></div>
               </div>
             </a>
 
-            <a href="#" class="feature-link" aria-label="Our services">
+            <a href="#" class="feature-link">
               <div class="feature-item">
-                <img src="./patient-care.png" alt="services" />
+                <img src="patient-care.png">
                 <div><div class="fw-semibold">Our Services</div><div class="small text-muted">All specialties</div></div>
               </div>
             </a>
+
           </div>
         </div>
       </div>
@@ -273,119 +320,106 @@
       <div class="container">
         <h2 class="text-center fw-bold mb-5">What We Do</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
+
           <div class="col">
             <div class="card shadow border-0 h-100">
-              <img src="checkup.jpg" class="card-img-top" alt="Annual Health Checkup" loading="lazy" />
+              <img src="checkup.jpg" class="card-img-top">
               <div class="card-body">
                 <h5 class="card-title fw-bold">ANNUAL HEALTH CHECKUP</h5>
                 <p class="card-text text-muted">HEALTH CHECKUP</p>
-                <button class="btn btn-outline-primary" type="button">BOOK APPOINTMENT</button>
+                <button class="btn btn-outline-primary">BOOK APPOINTMENT</button>
               </div>
             </div>
           </div>
 
           <div class="col">
             <div class="card shadow border-0 h-100">
-              <img src="spine.jpg" class="card-img-top" alt="Spine Surgery" loading="lazy" />
+              <img src="spine.jpg" class="card-img-top">
               <div class="card-body">
                 <h5 class="card-title fw-bold">Spine Surgery</h5>
-                <p class="card-text text-muted">Spinal problems refer to diseases or injuries that affect...</p>
-                <button class="btn btn-outline-primary" type="button">BOOK APPOINTMENT</button>
+                <p class="card-text text-muted">Spinal issues explained...</p>
+                <button class="btn btn-outline-primary">BOOK APPOINTMENT</button>
               </div>
             </div>
           </div>
 
           <div class="col">
             <div class="card shadow border-0 h-100">
-              <img src="ctscan.avif" class="card-img-top" alt="CT Scan" loading="lazy" />
+              <img src="ctscan.avif" class="card-img-top">
               <div class="card-body">
-                <h5 class="card-title fw-bold">Whole Body CT Scan Services</h5>
-                <p class="card-text text-muted">Whole body 3D CT Scanning services available 24 x 7...</p>
-                <button class="btn btn-outline-primary" type="button">BOOK APPOINTMENT</button>
+                <h5 class="card-title fw-bold">Whole Body CT Scan</h5>
+                <p class="card-text text-muted">Services available 24 x 7</p>
+                <button class="btn btn-outline-primary">BOOK APPOINTMENT</button>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="pt-5 pb-4" style="background:#003e6f; color:#cde2f5">
+    <footer class="pt-5 pb-4" style="background:#003e6f;color:#cde2f5">
       <div class="container">
-        <div class="row text-center text-white mb-4">
+        <div class="row text-center mb-4">
           <div class="col-lg-12">
             <h5 class="mb-3">Life is precious, we care for it.</h5>
-            <button class="btn btn-outline-light px-4 py-2" type="button">Book an appointment</button>
+            <button class="btn btn-outline-light px-4 py-2">Book an appointment</button>
           </div>
         </div>
 
         <div class="row mt-4">
+
           <div class="col-lg-4 mb-4">
-            <img src="images/your_logo.png" alt="Logo" style="height:60px" />
-            <p class="mt-3 small">Astha Hospital is a multispeciality medical centre providing quality care with advanced technology.</p>
-            <button class="btn btn-outline-light w-75 text-start mb-2" type="button"><i class="bi bi-person-circle me-2"></i> Find a Doctor</button>
-            <button class="btn btn-outline-light w-75 text-start mb-2" type="button"><i class="bi bi-clipboard2-check me-2"></i> Book a Service</button>
-            <button class="btn btn-outline-light w-75 text-start mb-2" type="button"><i class="bi bi-briefcase me-2"></i> Explore Careers</button>
+            <img src="images/your_logo.png" style="height:60px">
+            <p class="mt-3 small">Astha Hospital is a multispeciality medical centre.</p>
           </div>
 
           <div class="col-lg-2 col-md-6 mb-4">
-            <h6 class="text-white">About Astha</h6>
+            <h6>About Astha</h6>
             <ul class="list-unstyled small">
-              <li><a href="#" class="footer-link">Overview</a></li>
-              <li><a href="#" class="footer-link">Leadership</a></li>
-              <li><a href="#" class="footer-link">Accreditations</a></li>
-              <li><a href="#" class="footer-link">Achievements</a></li>
-            </ul>
-
-            <h6 class="text-white mt-4">Regulatory</h6>
-            <ul class="list-unstyled small">
-              <li><a href="#" class="footer-link">Patients Rights</a></li>
-              <li><a href="#" class="footer-link">Insurance</a></li>
-              <li><a href="#" class="footer-link">Waste Disposal</a></li>
+              <li><a class="footer-link" href="#">Overview</a></li>
+              <li><a class="footer-link" href="#">Leadership</a></li>
+              <li><a class="footer-link" href="#">Accreditations</a></li>
+              <li><a class="footer-link" href="#">Achievements</a></li>
             </ul>
           </div>
 
           <div class="col-lg-2 col-md-6 mb-4">
-            <h6 class="text-white">Quick Links</h6>
+            <h6>Quick Links</h6>
             <ul class="list-unstyled small">
-              <li><a href="#" class="footer-link">Services</a></li>
-              <li><a href="#" class="footer-link">Gallery</a></li>
-              <li><a href="#" class="footer-link">Contact Us</a></li>
-              <li><a href="#" class="footer-link">Career</a></li>
-              <li><a href="#" class="footer-link">Physiotherapy</a></li>
+              <li><a class="footer-link" href="#">Services</a></li>
+              <li><a class="footer-link" href="#">Gallery</a></li>
+              <li><a class="footer-link" href="#">Contact</a></li>
+              <li><a class="footer-link" href="#">Career</a></li>
             </ul>
           </div>
 
           <div class="col-lg-2 col-md-6 mb-4">
-            <h6 class="text-white">Locations</h6>
+            <h6>Locations</h6>
             <ul class="list-unstyled small">
-              <li>Astha Main Hospital</li>
-              <li>Astha Clinic — A</li>
-              <li>Astha Clinic — B</li>
-              <li>Astha Lab Centre</li>
+              <li>Main Hospital</li>
+              <li>Clinic A</li>
+              <li>Clinic B</li>
+              <li>Lab Centre</li>
             </ul>
           </div>
 
           <div class="col-lg-2 col-md-6 mb-4">
-            <h6 class="text-white">Contact</h6>
+            <h6>Contact</h6>
             <p class="small mb-1"><i class="bi bi-telephone-fill me-2"></i> +91-90000-00000</p>
-            <p class="small mb-1"><i class="bi bi-envelope-fill me-2"></i> contact@astha.com</p>
-            <p class="small mb-1"><i class="bi bi-geo-alt-fill me-2"></i> Pune, India</p>
-            <button class="btn btn-success btn-sm mt-2" type="button">Pay Online</button>
+            <button class="btn btn-success btn-sm mt-2">Pay Online</button>
           </div>
+
         </div>
 
-        <hr style="border-color:#2e5c86" />
-        <div class="row text-center">
-          <div class="col"><p class="small">© 2025 Astha Hospital. All Rights Reserved.</p></div>
-        </div>
+        <hr style="border-color:#275278" />
+        <p class="text-center small mb-0">© 2025 Astha Hospital. All Rights Reserved.</p>
+
       </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Feature-bar scroll JS: arrows, fades, auto-hide arrows at ends -->
+    <!-- Scroll JS for feature bar arrows -->
     <script>
       (function () {
         const scroller = document.getElementById('featureScroll');
@@ -394,85 +428,46 @@
         const fadeLeft = document.getElementById('fadeLeft');
         const fadeRight = document.getElementById('fadeRight');
 
-        // Helper: check if we are on small screen (≤480px)
         function isNarrow() {
           return window.matchMedia('(max-width: 480px)').matches;
         }
 
         function updateUI() {
-          if (!scroller) return;
-
-          if (isNarrow()) {
-            // show fades
-            if (fadeLeft) fadeLeft.style.display = 'block';
-            if (fadeRight) fadeRight.style.display = 'block';
-            // show arrows (they are present but hidden by CSS on larger screens)
-            if (leftBtn) leftBtn.style.display = 'flex';
-            if (rightBtn) rightBtn.style.display = 'flex';
-          } else {
-            if (fadeLeft) fadeLeft.style.display = 'none';
-            if (fadeRight) fadeRight.style.display = 'none';
-            if (leftBtn) leftBtn.style.display = 'none';
-            if (rightBtn) rightBtn.style.display = 'none';
-          }
-
-          // also update arrow visibility according to scroll position
-          updateArrowsVisibility();
-          updateFadeOpacity();
+          updateArrows();
+          updateFades();
         }
 
-        function updateArrowsVisibility() {
-          if (!scroller || !leftBtn || !rightBtn || !isNarrow()) return;
-          const maxScrollLeft = scroller.scrollWidth - scroller.clientWidth;
-          const cur = Math.round(scroller.scrollLeft);
+        function updateArrows() {
+          if (!isNarrow()) return;
 
-          // hide left arrow at start
-          if (cur <= 5) leftBtn.style.opacity = '0.35'; else leftBtn.style.opacity = '1';
-          // hide right arrow at end
-          if (cur >= maxScrollLeft - 5) rightBtn.style.opacity = '0.35'; else rightBtn.style.opacity = '1';
-        }
-
-        function updateFadeOpacity() {
-          if (!scroller || !fadeLeft || !fadeRight || !isNarrow()) return;
-          const maxScrollLeft = scroller.scrollWidth - scroller.clientWidth;
+          const maxScroll = scroller.scrollWidth - scroller.clientWidth;
           const cur = scroller.scrollLeft;
 
-          // simple opacity map (0..1)
-          const leftOpacity = Math.min(1, Math.max(0, cur / 40)); // fade-in in first 40px
-          const rightOpacity = Math.min(1, Math.max(0, (maxScrollLeft - cur) / 40));
-
-          fadeLeft.style.opacity = leftOpacity;
-          fadeRight.style.opacity = rightOpacity;
+          leftBtn.style.opacity = cur <= 5 ? "0.3" : "1";
+          rightBtn.style.opacity = cur >= maxScroll - 5 ? "0.3" : "1";
         }
 
-        // Scroll by amount when arrow clicked
-        function scrollBy(amount) {
-          if (!scroller) return;
-          scroller.scrollBy({ left: amount, behavior: 'smooth' });
+        function updateFades() {
+          if (!isNarrow()) return;
+
+          const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+          const cur = scroller.scrollLeft;
+
+          fadeLeft.style.opacity = Math.min(1, cur / 40);
+          fadeRight.style.opacity = Math.min(1, (maxScroll - cur) / 40);
         }
 
-        // Wiring
-        window.addEventListener('resize', updateUI);
-        document.addEventListener('DOMContentLoaded', updateUI);
+        leftBtn.addEventListener("click", () => scroller.scrollBy({ left: -180, behavior: "smooth" }));
+        rightBtn.addEventListener("click", () => scroller.scrollBy({ left: 180, behavior: "smooth" }));
 
-        if (scroller) {
-          scroller.addEventListener('scroll', function () {
-            updateArrowsVisibility();
-            updateFadeOpacity();
-          });
-          // on touch end also ensure update
-          scroller.addEventListener('touchend', function () {
-            setTimeout(updateArrowsVisibility, 100);
-            setTimeout(updateFadeOpacity, 100);
-          });
-        }
-
-        if (leftBtn) leftBtn.addEventListener('click', function () { scrollBy(-180); });
-        if (rightBtn) rightBtn.addEventListener('click', function () { scrollBy(180); });
-
-        // init once
-        updateUI();
+        scroller.addEventListener("scroll", updateUI);
+        window.addEventListener("resize", updateUI);
+        document.addEventListener("DOMContentLoaded", updateUI);
       })();
     </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   </body>
 </html>

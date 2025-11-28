@@ -365,6 +365,101 @@
     .shadow img {
       border-radius: 20px;
     }
+
+        .hero-promo-box {
+      position: absolute;
+      top: 16%;
+      left: 7%;
+      width: 45%;
+      padding: 32px 45px;
+      background: rgba(148, 231, 122, 0.72);
+      backdrop-filter: blur(10px);
+      border-radius: 6px;
+      z-index: 200;
+    }
+
+    .hero-promo-box h1 {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .hero-promo-box p {
+      font-size: 17px;
+      margin-bottom: 20px;
+    }
+
+    .promo-btn-primary {
+      background: #0d6efd;
+      border: none;
+      padding: 10px 26px;
+      color: white;
+      font-weight: 600;
+      border-radius: 4px;
+      margin-right: 12px;
+    }
+
+    .promo-btn-outline {
+      background: transparent;
+      border: 2px solid #0d6efd;
+      padding: 9px 26px;
+      color: #0d6efd;
+      font-weight: 600;
+      border-radius: 4px;
+    }
+
+    /* --- responsive hero promo box --- */
+    @media (max-width: 992px) {
+      .hero-promo-box {
+        width: 65%;
+        top: 14%;
+        left: 5%;
+        padding: 24px;
+      }
+
+      .hero-promo-box h1 {
+        font-size: 32px;
+      }
+
+      .hero-promo-box p {
+        font-size: 15px;
+      }
+
+      .promo-btn-primary,
+      .promo-btn-outline {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-promo-box {
+        width: 80%;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 20px;
+        text-align: center;
+      }
+
+      .hero-promo-box h1 {
+        font-size: 24px;
+      }
+
+      .hero-promo-box p {
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+
+      .promo-btn-primary,
+      .promo-btn-outline {
+        width: 100%;
+        margin-right: 0;
+        font-size: 14px;
+        padding: 8px 18px;
+      }
+    }
+    
   </style>
 </head>
 
@@ -509,6 +604,14 @@
 
   <!-- HERO CAROUSEL -->
   <section class="hero-carousel">
+
+      <div class="hero-promo-box">
+      <h1>Your Health, Our Priority.</h1>
+      <p>Providing trusted healthcare services, experienced specialists, and 24/7 patient support.</p>
+      <button class="promo-btn-primary" onclick="location.href='bookap.html'">Book Appointment</button>
+      <button class="promo-btn-outline" onclick="location.href='aboutus.html'">Learn More</button>
+    </div>
+    
     <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active"><img src="1d.jpg" class="d-block w-100"></div>
@@ -786,3 +889,4 @@
 </body>
 
 </html>
+

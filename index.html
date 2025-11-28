@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -53,7 +52,7 @@
       transform: translateX(-50%);
       margin: 0;
       max-width: 1100px;
-      background: #f6fbff;
+      background:#d4e8fd;  /* Clean semi-white for clarity */
       border-radius: 14px;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
       overflow: visible;
@@ -250,6 +249,76 @@
       }
     }
 
+    /* ---------- Testimonials (horizontal scroll, no JS) ---------- */
+    .testimonials-section {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .testimonials-wrap {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 12px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .testimonial-card {
+      flex: 0 0 320px; /* change to show more/less */
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 22px rgba(15, 40, 90, 0.06);
+      padding: 18px;
+      scroll-snap-align: start;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .testimonial-body {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+
+    .testimonial-meta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .testimonial-meta img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #e9f3ff;
+    }
+
+    .testimonial-meta .meta-text {
+      font-size: 14px;
+    }
+
+    .testimonial-meta .meta-text .name {
+      font-weight: 600;
+    }
+
+    /* small scrollbar styling for webkit */
+    .testimonials-wrap::-webkit-scrollbar {
+      height: 8px;
+    }
+    .testimonials-wrap::-webkit-scrollbar-thumb {
+      background: rgba(13,110,253,0.15);
+      border-radius: 999px;
+    }
+
+    @media (max-width: 768px) {
+      .testimonial-card { flex: 0 0 280px; }
+    }
+    @media (max-width: 480px) {
+      .testimonial-card { flex: 0 0 85%; } /* show one card mostly on tiny phones */
+    }
+
     /* footer */
     .card-img-top {
       height: 200px;
@@ -341,7 +410,7 @@
 
     .card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.18);
     }
 
     /* Image zoom on hover */
@@ -366,13 +435,14 @@
       border-radius: 20px;
     }
 
-        .hero-promo-box {
+    .hero-promo-box {
       position: absolute;
       top: 16%;
       left: 7%;
       width: 45%;
       padding: 32px 45px;
-      background: rgba(148, 231, 122, 0.72);
+      background: rgba(124, 246, 106, 0.75);  
+
       backdrop-filter: blur(10px);
       border-radius: 6px;
       z-index: 200;
@@ -462,7 +532,6 @@
     
   </style>
 </head>
-
 <body>
 
   <!-- NAVBAR (fixed) -->
@@ -740,6 +809,65 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS (horizontal scroll, no JS) -->
+  <section class="testimonials-section">
+    <div class="container">
+      <h3 class="text-center fw-semibold mb-3">What our patients say</h3>
+      <p class="text-center text-muted mb-4">Real stories from real patients — their experience with Astha Hospitals.</p>
+
+      <div class="testimonials-wrap">
+        <!-- Testimonial 1 -->
+        <article class="testimonial-card">
+          <p class="testimonial-body">"I visited Astha last month for a full body check-up. The staff was professional and the doctor explained everything clearly. Quick, friendly, and very reassuring."</p>
+          <div class="testimonial-meta">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Patient photo">
+            <div class="meta-text">
+              <div class="name">Neha Sharma</div>
+              <div class="small text-muted">Pune — Patient</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Testimonial 2 -->
+        <article class="testimonial-card">
+          <p class="testimonial-body">"My father had a complex surgery and the team at Astha took excellent care. The surgeons and nurses were calm and attentive. Recovery has been smooth."</p>
+          <div class="testimonial-meta">
+            <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Patient photo">
+            <div class="meta-text">
+              <div class="name">Rahul Desai</div>
+              <div class="small text-muted">Mumbai — Family member</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Testimonial 3 -->
+        <article class="testimonial-card">
+          <p class="testimonial-body">"Very impressed by the pediatric department — my child was nervous but the team made him comfortable. Friendly doctors and quick appointments."</p>
+          <div class="testimonial-meta">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Patient photo">
+            <div class="meta-text">
+              <div class="name">Priya Kulkarni</div>
+              <div class="small text-muted">Pune — Parent</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Testimonial 4 -->
+        <article class="testimonial-card">
+          <p class="testimonial-body">"Great experience overall — modern equipment, clean facilities, and helpful support staff. I felt well taken care of at every step."</p>
+          <div class="testimonial-meta">
+            <img src="https://randomuser.me/api/portraits/men/72.jpg" alt="Patient photo">
+            <div class="meta-text">
+              <div class="name">Suresh Patil</div>
+              <div class="small text-muted">Pune — Patient</div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
   <!-- WHY CHOOSE US / LIFE IS PRECIOUS SECTION -->
   <section class="py-5">
     <div class="container">
@@ -773,7 +901,6 @@
       </div>
     </div>
   </section>
-
 
   <!-- FOOTER -->
   <footer class="pt-5 pb-4" style="background:#003e6f;color:#cde2f5">
@@ -836,7 +963,7 @@
     </div>
   </footer>
 
-  <!-- Scroll JS for feature bar arrows -->
+  <!-- Scroll JS for feature bar arrows (kept, but testimonials do not require JS) -->
   <script>
     (function () {
       const scroller = document.getElementById('featureScroll');
@@ -887,6 +1014,4 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>
-

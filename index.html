@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Astha.official</title>
+  <title>Astha</title>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -40,7 +40,8 @@
     }
 
     .hero-carousel {
-      padding-bottom: 0;
+      /* default padding so feature bar has space in desktop */
+      padding-bottom: 80px;
       position: relative;
     }
 
@@ -63,6 +64,7 @@
     .feature-bar .d-flex.w-100 {
       display: flex;
       flex-wrap: nowrap;
+      justify-content: space-around;
     }
 
     .feature-link {
@@ -74,6 +76,8 @@
       transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
       min-height: 64px;
       box-sizing: border-box;
+      flex: 1;
+      justify-content: center;
     }
 
     .feature-link+.feature-link {
@@ -108,7 +112,7 @@
     /* ---------- 720px wrap ---------- */
     @media (max-width:720px) {
       .hero-carousel {
-        padding-bottom: 0;
+        padding-bottom: 64px; /* leave a small area for UX overlap if needed */
       }
 
       .feature-bar {
@@ -151,12 +155,18 @@
         width: 28px;
         height: 28px;
       }
+      /* reduce carousel height on tablet/mobile */
+      .hero-carousel .carousel-item {
+        height: 55vh;
+        min-height: 220px;
+      }
     }
 
     /* ---------- 480px horizontal scroll ---------- */
     @media (max-width:480px) {
       .hero-carousel {
         margin-bottom: 0;
+        padding-bottom: 56px; /* reduce space for mobile */
       }
 
       .feature-bar {
@@ -181,6 +191,11 @@
         gap: 6px;
         padding: 6px;
         scroll-snap-type: x mandatory;
+      }
+      /* reduce carousel height on narrow phones */
+      .hero-carousel .carousel-item {
+        height: 46vh;
+        min-height: 160px;
       }
 
       .feature-link {
@@ -496,9 +511,9 @@
   <section class="hero-carousel">
     <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item active"><img src="2d.jpg" class="d-block w-100"></div>
+        <div class="carousel-item active"><img src="1d.jpg" class="d-block w-100"></div>
+        <div class="carousel-item"><img src="2d.jpg" class="d-block w-100"></div>
         <div class="carousel-item"><img src="3d.jpg" class="d-block w-100"></div>
-        <div class="carousel-item"><img src="1d.jpg" class="d-block w-100"></div>
       </div>
 
       <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">

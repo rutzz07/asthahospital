@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Children Behaviour Support — Astha / Dr. Kalpana</title>
+
+  <!-- Bootstrap CSS (layout only) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --leaf-green: #2f8f4a;
+      --leaf-dark:  #256f3b;
+      --muted:      #556b57;
+      --panel-shadow: 0 12px 30px rgba(20,70,30,0.06);
+      --overlay: rgba(3,35,60,0.26);
+      --cream: #fbf9f2;
+    }
+
+    *{box-sizing:border-box;}
+    html,body{height:100%; margin:0; font-family:system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:#072032; -webkit-font-smoothing:antialiased;}
+
+    /* Page background (soft, child-friendly) */
+    body{
+      background-image: url('childbg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      position:relative;
+      min-height:100vh;
+    }
+    /* overlay for readability */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:var(--overlay);
+      z-index:0;
+      pointer-events:none;
+    }
+
+    .page-wrap{ position:relative; z-index:2; padding:18px 0 60px; }
+
+    /* NAVBAR */
+    .topbar{
+      background: linear-gradient(180deg, rgba(47,143,74,0.06), rgba(255,255,255,0.65));
+      padding:12px 0;
+      position:sticky;
+      top:0;
+      z-index:999;
+      box-shadow:0 8px 24px rgba(20,70,30,0.06);
+      backdrop-filter: blur(4px);
+    }
+    .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; }
+    .brand img{ width:56px; height:56px; border-radius:50%; object-fit:cover; border:2px solid rgba(47,143,74,0.12); box-shadow:0 6px 18px rgba(20,70,30,0.03); }
+    .brand .clinic{ font-weight:700; color:var(--leaf-dark); }
+    .brand .sub{ color:var(--muted); font-size:.9rem; }
+
+    .btn-leaf { background:var(--leaf-green); color:#fff; border:0; padding:8px 14px; border-radius:8px; font-weight:700; }
+    .btn-outline-leaf { background:transparent; color:var(--leaf-green); border:2px solid var(--leaf-green); padding:8px 12px; border-radius:8px; font-weight:700; }
+
+    /* hero */
+    .hero{ padding:54px 0; }
+    .hero-panel{
+      max-width:1100px;
+      margin:0 auto;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.94));
+      border-radius:14px;
+      padding:26px;
+      box-shadow:var(--panel-shadow);
+      display:flex;
+      gap:24px;
+      align-items:center;
+    }
+
+    .hero-badge{ display:inline-block; background:#eef9ef; color:var(--leaf-dark); padding:6px 12px; border-radius:999px; font-weight:700; }
+    .hero-title{ font-size:1.7rem; font-weight:800; color:#072032; margin:8px 0; line-height:1.06; }
+    .hero-sub{ color:var(--muted); margin-bottom:12px; }
+
+    .rounded-img{ width:100%; border-radius:12px; object-fit:cover; display:block; }
+
+    /* main panels */
+    .panel { background: rgba(255,255,255,0.98); border-radius:14px; padding:20px; box-shadow:var(--panel-shadow); border: 1px solid rgba(10,40,20,0.03); }
+    .muted { color:var(--muted); }
+
+    /* approach cards */
+    .approach-step { border-radius:12px; padding:14px; background:linear-gradient(180deg,#fff,#fbfbff); box-shadow:0 8px 20px rgba(2,6,23,0.04); }
+
+    /* CTA */
+    .cta-box { background: linear-gradient(180deg,#f9fff6,#eefaf0); border-radius:12px; padding:16px; text-align:center; box-shadow:0 8px 20px rgba(2,6,23,0.04); }
+    .cta-phone { font-weight:800; color:var(--leaf-dark); margin-bottom:10px; }
+
+    /* testimonials */
+    .testimonial { background:#fff; border-radius:12px; padding:12px; box-shadow:0 8px 18px rgba(2,6,23,0.04); }
+
+    footer{ margin-top:28px; background: rgba(2,40,70,0.95); color:#d9eefc; text-align:center; padding:18px; border-radius:8px; margin-left:12px; margin-right:12px; }
+
+    /* small utility */
+    .small-muted { color:var(--muted); font-size:.95rem; }
+    .mb-xxs { margin-bottom:6px; }
+
+    /* responsive */
+    @media (max-width:992px){
+      .hero-panel { flex-direction:column; text-align:center; }
+      .hero-title{ font-size:1.4rem; }
+      .brand img{ width:48px; height:48px; }
+    }
+    @media (max-width:576px){
+      .topbar{ padding:10px 8px; }
+      .hero-panel{ padding:18px; margin:0 10px; }
+      footer{ margin:10px; }
+      .hero-title { font-size:1.25rem; }
+    }
+
+    /* accessibility focus outlines */
+    a:focus, button:focus { outline: 3px solid rgba(47,143,74,0.18); outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <!-- NAVBAR -->
+    <header class="topbar">
+      <div class="container d-flex justify-content-between align-items-center">
+        <a href="index3.html" class="brand" aria-label="Astha Clinic home">
+          <img src="asthafinallogo.png" alt="Astha logo">
+          <div>
+            <div class="clinic">Astha Clinic</div>
+            <div class="sub">Naturopathy & Aroma</div>
+          </div>
+        </a>
+
+        <nav>
+          <a href="index3.html" class="btn btn-outline-leaf btn-sm me-2">Home</a>
+          <a href="tel:+919000000000" class="btn btn-leaf btn-sm">Call Now</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" role="region" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-panel">
+          <div class="flex-fill text-start">
+            <span class="hero-badge">Children Behaviour Support</span>
+            <h1 id="hero-heading" class="hero-title">Gentle, natural support for children’s focus, sleep & emotional balance</h1>
+            <p class="hero-sub">A blend of aroma therapy, naturopathy and child-centered behavioural approaches to help improve attention, calmness, sleep and social skills — suitable for toddlers to teens.</p>
+
+            <div class="mt-3">
+              <a href="tel:+919000000000" class="btn btn-leaf me-2" aria-label="Call Astha Clinic">Call to Book</a>
+              <a href="#program" class="btn btn-outline-leaf" aria-label="See program details">See Program</a>
+            </div>
+          </div>
+
+          <div style="width:280px; min-width:180px;">
+            <img src="child-therapy.jpg" alt="Child therapy session" class="rounded-img" style="height:200px;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="container py-4" id="program" role="main">
+      <div class="row g-4">
+
+        <!-- left column -->
+        <div class="col-lg-8">
+          <div class="panel" aria-labelledby="approach-heading">
+            <h3 id="approach-heading">Approach & Goals</h3>
+            <p class="muted">We combine gentle naturopathic support and aroma therapy with behaviour-friendly routines to address the root causes of attention, sleep and emotional regulation problems in children.</p>
+
+            <h5 class="mt-3">Core components</h5>
+            <ul class="muted">
+              <li>Individual assessment & parent interview</li>
+              <li>Nutrition & sleep support suited to children</li>
+              <li>Calming aroma blends (age-safe)</li>
+              <li>Behavioural routines and sensory strategies</li>
+              <li>Exercises for focus, breathing & self-regulation</li>
+            </ul>
+
+            <h5 class="mt-3">Typical program</h5>
+            <div class="row g-3">
+              <div class="col-md-4">
+                <div class="approach-step text-center" role="region" aria-label="Assess step">
+                  <strong>Assess</strong>
+                  <p class="muted small mb-0">History, sleep, diet & behaviour mapping</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="approach-step text-center" role="region" aria-label="Plan step">
+                  <strong>Plan</strong>
+                  <p class="muted small mb-0">Personalised strategies & aroma blends</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="approach-step text-center" role="region" aria-label="Support step">
+                  <strong>Support</strong>
+                  <p class="muted small mb-0">Follow-up, parent coaching, simple exercises</p>
+                </div>
+              </div>
+            </div>
+
+            <h5 class="mt-4">What parents report</h5>
+            <ul class="muted">
+              <li>Better sleep & calmer evenings</li>
+              <li>Improved focus at school</li>
+              <li>Reduced tantrums & anxiety</li>
+              <li>Greater confidence in social situations</li>
+            </ul>
+
+            <h5 class="mt-4">FAQ</h5>
+            <dl class="muted">
+              <dt>Is aroma therapy safe for children?</dt>
+              <dd>Yes — we use age-appropriate, diluted blends and always check sensitivity before use.</dd>
+
+              <dt>How soon will I see change?</dt>
+              <dd>Parents often notice small improvements in sleep and routine within 1–3 weeks; behavioural changes build over 6–12 weeks with consistent routines.</dd>
+            </dl>
+          </div>
+
+          <!-- testimonials -->
+          <div class="row g-3 mt-3">
+            <div class="col-md-6">
+              <div class="testimonial" role="article" aria-label="Testimonial from Ritika">
+                <strong>Ritika (Parent)</strong>
+                <p class="muted small mb-0">"Gentle routines and the aroma blend helped my son's sleep — teachers noticed better focus."</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="testimonial" role="article" aria-label="Testimonial from Sanjay">
+                <strong>Sanjay (Parent)</strong>
+                <p class="muted small mb-0">"The step-by-step plan was practical and easy to follow. Calmer evenings now."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- right sidebar -->
+        <div class="col-lg-4">
+          <div class="cta-box" role="complementary" aria-labelledby="contact-heading">
+            <img src="dr-kalpana-small.jpg" alt="Dr Kalpana portrait" class="rounded-img" style="height:140px; margin-bottom:10px;">
+            <h5 id="contact-heading" class="mb-1">Consultation with Dr. Kalpana</h5>
+            <p class="muted small mb-2">Naturopath & Aroma Therapist — child-friendly care</p>
+
+            <div class="cta-phone">📞 +91-90000-00000</div>
+            <a href="tel:+919000000000" class="btn btn-leaf w-100 mb-2" aria-label="Call to book">Call Now</a>
+            <a href="https://wa.me/919000000000" class="btn btn-success w-100 mb-2" aria-label="WhatsApp to book">WhatsApp</a>
+
+            <p class="small-muted mt-2 mb-0">Clinic timings: 10:00 AM – 7:00 PM (Mon–Sat)</p>
+          </div>
+
+          <div class="panel mt-3" role="region" aria-label="Notes for parents">
+            <h6 class="mb-2">Useful notes for parents</h6>
+            <ul class="muted small">
+              <li>Start small: 1–2 routine changes at a time</li>
+              <li>Consistency matters more than perfection</li>
+              <li>Keep aroma usage short and supervised</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer role="contentinfo">
+      <div class="container">
+        <div style="font-weight:700">Astha — Children Behaviour Support</div>
+        <div class="small-muted">© 2025 Astha Clinic. All Rights Reserved.</div>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

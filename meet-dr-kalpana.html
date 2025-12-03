@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Meet Dr. Kalpana — Astha Clinic</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --leaf-dark: #3a7a52;
+      --leaf: #57a773;
+      --leaf-soft: #e9f7ef;
+      --cream: #fffdf7;
+      --muted: #6c757d;
+      --panel-shadow: 0 10px 26px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html,body { height:100%; margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:#072032; background: var(--cream); }
+
+    /* NAVBAR (leaf theme) */
+    .navbar-custom {
+      background: linear-gradient(90deg, var(--leaf), var(--leaf-dark));
+      padding: 10px 0;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .navbar-custom .navbar-brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color: #fff;
+      text-decoration: none;
+    }
+    .navbar-custom .navbar-brand img {
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      object-fit:cover;
+      border: 3px solid #ffffffaa;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .navbar-custom .btn-outline-light {
+      border-color: rgba(255,255,255,0.25);
+      color: #fff;
+    }
+    .navbar-custom .btn-outline-light:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+    /* PAGE HEADER / PROFILE CARD */
+    .page-hero { padding: 30px 0; }
+    .profile-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: var(--panel-shadow);
+      display:flex;
+      gap:20px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .photo { flex: 0 0 240px; border-radius:12px; overflow:hidden; box-shadow:0 12px 28px rgba(2,6,23,0.06); }
+    .photo img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    .bio { flex:1 1 auto; min-width:220px; }
+    .name { font-size:1.6rem; font-weight:800; margin:0; color: var(--leaf-dark); }
+    .roles { color:var(--muted); margin-bottom:10px; }
+    .pill { display:inline-block; background:#e9f1ea; color:var(--leaf-dark); padding:6px 12px; border-radius:999px; font-weight:600; margin-right:8px; margin-bottom:8px; }
+
+    /* panels & contact */
+    .panel { background:#fff; border-radius:12px; padding:18px; box-shadow:var(--panel-shadow); }
+    .section-title { font-weight:700; margin-bottom:12px; color: var(--leaf-dark); }
+    .contact-box {
+      background: linear-gradient(180deg,#f6fff7,#fff);
+      border-radius:12px;
+      padding:16px;
+      text-align:center;
+      box-shadow: 0 8px 18px rgba(2,6,23,0.05);
+    }
+    .cta-phone { font-weight:700; color:var(--leaf-dark); font-size:1.15rem; margin-bottom:10px; }
+
+    /* Videos grid */
+    .videos-grid {
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:18px;
+    }
+    .video-card {
+      background: #fff;
+      border-radius:12px;
+      padding:12px;
+      box-shadow: 0 8px 20px rgba(2,6,23,0.04);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .video-wrap {
+      width:100%;
+      border-radius:10px;
+      overflow:hidden;
+      background:#000;
+      display:block;
+      position:relative; /* for badge overlay */
+    }
+    .video-card video, .video-card iframe {
+      width:100%;
+      height:220px;
+      display:block;
+      border:0;
+      background:#000;
+    }
+
+    /* ASTHA logo badge that overlays each video (top-right) */
+    .video-badge {
+      position:absolute;
+      top:10px;
+      right:10px;
+      width:46px;
+      height:46px;
+      border-radius:8px;
+      overflow:hidden;
+      border:2px solid rgba(255,255,255,0.95);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:10;
+    }
+    .video-badge img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    .video-title { font-weight:700; margin:0; font-size:1rem; color: var(--leaf-dark); }
+    .video-desc { color:var(--muted); font-size:0.95rem; margin:0; }
+
+    /* INSTAGRAM button (header right) */
+    .ig-btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      background: linear-gradient(135deg,#E1306C 0%, #C13584 50%, #833AB4 100%);
+      color:#fff;
+      font-size:18px;
+      border:2px solid rgba(255,255,255,0.15);
+      text-decoration:none;
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    }
+    .ig-btn:hover { transform: scale(1.06); }
+
+    /* responsiveness */
+    @media (max-width: 992px) {
+      .videos-grid { grid-template-columns: 1fr; }
+      .video-card video, .video-card iframe { height:200px; }
+      .photo { flex-basis:100%; height:260px; }
+      .profile-card { flex-direction:column; text-align:center; }
+    }
+    @media (max-width: 576px) {
+      .video-card video, .video-card iframe { height:170px; }
+    }
+
+    footer { margin-top:28px; background: rgba(58,122,82,0.95); color:#e9f7ef; text-align:center; padding:18px; border-radius:8px; margin-left:12px; margin-right:12px; }
+
+    .muted { color:var(--muted); }
+    .icon-circle { width:44px; height:44px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:#e9f1ea; color:var(--leaf); margin-right:10px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index3.html">
+        <img src="asthafinallogo.png" alt="Astha logo">
+      </a>
+
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <a href="index3.html" class="btn btn-outline-light me-2">Home</a>
+        <a href="tel:+919000000000" class="btn btn-light">Call Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    <!-- PROFILE -->
+    <section class="page-hero mb-4">
+      <div class="profile-card">
+        <div class="photo" aria-hidden="true">
+          <img src="dr-kalpana.jpg" alt="Dr. Kalpana - Naturopath & Aroma Therapist">
+        </div>
+
+        <div class="bio">
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            <h1 class="name">Dr. Kalpana</h1>
+            <div class="pill">Naturopath</div>
+            <div class="pill">Aroma Therapist</div>
+          </div>
+
+          <p class="roles muted">Holistic, evidence-based naturopathy │ Children's behaviour support │ Pain & migraine care</p>
+
+          <p>
+            <strong>About Dr. Kalpana:</strong> With over 10 years of experience in naturopathy and aroma therapy,
+            Dr. Kalpana focuses on gentle, root-cause approaches to pain management, migraine reduction and
+            children's behavioural wellbeing.
+          </p>
+
+          <p class="muted mb-0"><strong>Clinic:</strong> Astha Clinic — by appointment only</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section class="mb-4">
+      <div class="panel">
+
+        <!-- Header row: title + Instagram icon on right -->
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <div class="section-title m-0">Videos — Talks by Dr. Kalpana</div>
+
+          <!-- Instagram Icon (opens profile) -->
+          <a
+            class="ig-btn"
+            href="https://www.instagram.com/aasthaclinik?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank"
+            rel="noopener"
+            title="Visit Astha Instagram"
+            aria-label="Visit Astha Instagram"
+          >
+            <i class="bi bi-instagram" aria-hidden="true"></i>
+          </a>
+        </div>
+
+        <p class="muted mt-2">Short, helpful videos where Dr. Kalpana discusses common health topics, practical tips and natural approaches.</p>
+
+        <div class="videos-grid mt-3">
+          <!-- 1: Introduction -->
+          <div class="video-card">
+            <div class="video-wrap" aria-hidden="false">
+              <!-- Logo badge overlay (top-right) -->
+              <a href="index3.html" class="video-badge" title="Astha Clinic">
+                <img src="asthafinallogo.png" alt="Astha logo">
+              </a>
+
+              <!-- Replace src with your file or external video URL -->
+              <video controls preload="metadata" src="./assets/mainvideo.mp4" poster="videos/intro-poster.jpg">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div>
+              <p class="video-title">Introduction — Meet Dr. Kalpana</p>
+              <p class="video-desc">A short introduction about Dr. Kalpana’s training, approach and what to expect at Astha Clinic (2–3 minutes).</p>
+            </div>
+          </div>
+
+          <!-- 2: Pain -->
+          <div class="video-card">
+            <div class="video-wrap">
+              <a href="index3.html" class="video-badge" title="Astha Clinic">
+                <img src="asthafinallogo.png" alt="Astha logo">
+              </a>
+
+              <video controls preload="metadata" src="./assets/painvideo.mp4" poster="videos/pain-poster.jpg">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div>
+              <p class="video-title">Pain Therapy — Non-invasive options</p>
+              <p class="video-desc">Explains shockwave, gentle naturopathic techniques and home strategies to manage chronic pain and improve mobility.</p>
+            </div>
+          </div>
+
+          <!-- 3: Migraine -->
+          <div class="video-card">
+            <div class="video-wrap">
+              <a href="index3.html" class="video-badge" title="Astha Clinic">
+                <img src="asthafinallogo.png" alt="Astha logo">
+              </a>
+
+              <video controls preload="metadata" src="./assets/migrainvideo.mp4" poster="videos/migraine-poster.jpg">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div>
+              <p class="video-title">Migraine Healing — Natural strategies</p>
+              <p class="video-desc">How aroma therapy, trigger management and lifestyle changes help reduce migraine frequency and intensity.</p>
+            </div>
+          </div>
+
+          <!-- 4: PCOD / Thyroid -->
+          <div class="video-card">
+            <div class="video-wrap">
+              <a href="index3.html" class="video-badge" title="Astha Clinic">
+                <img src="asthafinallogo.png" alt="Astha logo">
+              </a>
+
+              <video controls preload="metadata" src="./assets/pcod,thyroidvideo.mp4" poster="videos/pcod-poster.jpg">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div>
+              <p class="video-title">PCOD & Thyroid — Natural support</p>
+              <p class="video-desc">Discusses lifestyle, diet and gentle naturopathic approaches that support hormonal balance alongside medical care.</p>
+            </div>
+          </div>
+
+          <!-- 5: Weight Loss -->
+          <div class="video-card">
+            <div class="video-wrap">
+              <a href="index3.html" class="video-badge" title="Astha Clinic">
+                <img src="asthafinallogo.png" alt="Astha logo">
+              </a>
+
+              <video controls preload="metadata" src="./assets/weightlossvideo.mp4" poster="videos/weightloss-poster.jpg">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div>
+              <p class="video-title">Weight Loss & Wellness</p>
+              <p class="video-desc">Practical, sustainable advice for healthy weight loss: diet balance, stress, sleep and activity that fit real life.</p>
+            </div>
+          </div>
+
+        </div> <!-- end videos-grid -->
+      </div>
+    </section>
+
+    <!-- services + contact -->
+    <section class="row g-4 mb-4">
+      <div class="col-lg-8">
+        <div class="panel">
+          <div class="section-title">Full services & approach</div>
+          <p class="muted">Dr. Kalpana combines clinical assessment, personalised aroma blends and lifestyle plans to deliver gentle, long-term improvements in pain, migraine and behaviour-related concerns.</p>
+
+          <h6 class="mt-3">Core services</h6>
+          <ul class="muted">
+            <li>One-to-one naturopathic consultations</li>
+            <li>Shockwave and non-invasive pain therapies</li>
+            <li>Aroma therapy blends & sensitivity testing</li>
+            <li>Child behaviour support plans & parent coaching</li>
+            <li>Holistic wellness & full body assessments</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="col-lg-4">
+        <div class="contact-box">
+          <div style="display:flex; align-items:center; gap:12px; justify-content:center;">
+            <div class="icon-circle"><i class="bi bi-person-badge" style="font-size:1.2rem"></i></div>
+            <div style="text-align:left;">
+              <div style="font-weight:700">Consultations</div>
+              <div class="muted small">By appointment only</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <div class="cta-phone">📞 +91-90000-00000</div>
+            <a href="tel:+919000000000" class="btn btn-success w-100 mb-2">Call Now</a>
+            <a href="https://wa.me/919000000000" class="btn btn-outline-success w-100">WhatsApp</a>
+          </div>
+
+          <p class="muted small mt-3 mb-0">Clinic timings: 10:00 AM – 7:00 PM (Mon–Sat)</p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="font-weight:700">Astha — Meet Dr. Kalpana</div>
+      <div class="small muted">© 2025 Astha Clinic. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS (keeps responsive collapse working) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -117,6 +117,32 @@
 
     /* accessibility focus outlines */
     a:focus, button:focus { outline: 3px solid rgba(47,143,74,0.18); outline-offset: 2px; }
+
+    /* FAQ: CSS-only accordion using details/summary */
+    .faq-accordion details { border-top:1px solid rgba(10,40,20,0.04); padding:0; background:transparent; }
+    .faq-accordion details:first-child { border-top:none; }
+    .faq-accordion summary {
+      list-style:none;
+      cursor:pointer;
+      padding:12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      font-weight:700;
+      color:#072032;
+      margin:0;
+      border-radius:8px;
+    }
+    .faq-accordion summary::-webkit-details-marker { display:none; }
+    .faq-accordion .faq-title { flex:1; }
+    .faq-accordion .faq-arrow { width:18px; height:18px; display:inline-block; transition: transform .22s ease; flex-shrink:0; color:var(--leaf-dark); }
+    .faq-accordion details[open] .faq-arrow { transform: rotate(180deg); }
+    .faq-accordion .answer { padding:10px 14px 16px 14px; color:var(--muted); }
+
+    /* focus visibility for keyboard users */
+    .faq-accordion summary:focus { outline:3px solid rgba(47,143,74,0.12); }
+
   </style>
 </head>
 <body>
@@ -125,7 +151,7 @@
     <!-- NAVBAR -->
     <header class="topbar">
       <div class="container d-flex justify-content-between align-items-center">
-        <a href="index3.html" class="brand" aria-label="Astha Clinic home">
+        <a href="index.html" class="brand" aria-label="Astha Clinic home">
           <img src="asthafinallogo.png" alt="Astha logo">
           <div>
             <div class="clinic">Astha Clinic</div>
@@ -134,8 +160,8 @@
         </a>
 
         <nav>
-          <a href="index3.html" class="btn btn-outline-leaf btn-sm me-2">Home</a>
-          <a href="tel:+919000000000" class="btn btn-leaf btn-sm">Call Now</a>
+          <a href="index.html" class="btn btn-outline-leaf btn-sm me-2">Home</a>
+          <a href="tel:+919172726276" class="btn btn-leaf btn-sm">Call Now</a>
         </nav>
       </div>
     </header>
@@ -150,7 +176,7 @@
             <p class="hero-sub">A blend of aroma therapy, naturopathy and child-centered behavioural approaches to help improve attention, calmness, sleep and social skills — suitable for toddlers to teens.</p>
 
             <div class="mt-3">
-              <a href="tel:+919000000000" class="btn btn-leaf me-2" aria-label="Call Astha Clinic">Call to Book</a>
+              <a href="tel:+919172726276" class="btn btn-leaf me-2" aria-label="Call Astha Clinic">Call to Book</a>
               <a href="#program" class="btn btn-outline-leaf" aria-label="See program details">See Program</a>
             </div>
           </div>
@@ -167,7 +193,7 @@
       <div class="row g-4">
 
         <!-- left column -->
-        <div class="col-lg-8">
+        <div class="col-lg-12">
           <div class="panel" aria-labelledby="approach-heading">
             <h3 id="approach-heading">Approach & Goals</h3>
             <p class="muted">We combine gentle naturopathic support and aroma therapy with behaviour-friendly routines to address the root causes of attention, sleep and emotional regulation problems in children.</p>
@@ -212,13 +238,39 @@
             </ul>
 
             <h5 class="mt-4">FAQ</h5>
-            <dl class="muted">
-              <dt>Is aroma therapy safe for children?</dt>
-              <dd>Yes — we use age-appropriate, diluted blends and always check sensitivity before use.</dd>
 
-              <dt>How soon will I see change?</dt>
-              <dd>Parents often notice small improvements in sleep and routine within 1–3 weeks; behavioural changes build over 6–12 weeks with consistent routines.</dd>
-            </dl>
+            <!-- CSS-only Accordion using details/summary -->
+            <div class="faq-accordion mt-2" role="region" aria-label="Frequently asked questions">
+              <details>
+                <summary>
+                  <span class="faq-title">Is aroma therapy safe for children?</span>
+                  <i class="bi bi-chevron-down faq-arrow" aria-hidden="true"></i>
+                </summary>
+                <div class="answer">
+                  <p>Yes — we use age-appropriate, diluted blends and always check sensitivity before use.</p>
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  <span class="faq-title">How soon will I see change?</span>
+                  <i class="bi bi-chevron-down faq-arrow" aria-hidden="true"></i>
+                </summary>
+                <div class="answer">
+                  <p>Parents often notice small improvements in sleep and routine within 1–3 weeks; behavioural changes build over 6–12 weeks with consistent routines.</p>
+                </div>
+              </details>
+
+              <details>
+                <summary>
+                  <span class="faq-title">Do you work with diagnoses like ADHD?</span>
+                  <i class="bi bi-chevron-down faq-arrow" aria-hidden="true"></i>
+                </summary>
+                <div class="answer">
+                  <p>We provide supportive naturopathic and behavioural strategies that can complement medical care — we do not replace clinical diagnosis or specialist treatment. We coordinate with your child's healthcare team when appropriate.</p>
+                </div>
+              </details>
+            </div>
           </div>
 
           <!-- testimonials -->
@@ -239,28 +291,7 @@
         </div>
 
         <!-- right sidebar -->
-        <div class="col-lg-4">
-          <div class="cta-box" role="complementary" aria-labelledby="contact-heading">
-            <img src="dr-kalpana-small.jpg" alt="Dr Kalpana portrait" class="rounded-img" style="height:140px; margin-bottom:10px;">
-            <h5 id="contact-heading" class="mb-1">Consultation with Dr. Kalpana</h5>
-            <p class="muted small mb-2">Naturopath & Aroma Therapist — child-friendly care</p>
-
-            <div class="cta-phone">📞 +91-90000-00000</div>
-            <a href="tel:+919000000000" class="btn btn-leaf w-100 mb-2" aria-label="Call to book">Call Now</a>
-            <a href="https://wa.me/919000000000" class="btn btn-success w-100 mb-2" aria-label="WhatsApp to book">WhatsApp</a>
-
-            <p class="small-muted mt-2 mb-0">Clinic timings: 10:00 AM – 7:00 PM (Mon–Sat)</p>
-          </div>
-
-          <div class="panel mt-3" role="region" aria-label="Notes for parents">
-            <h6 class="mb-2">Useful notes for parents</h6>
-            <ul class="muted small">
-              <li>Start small: 1–2 routine changes at a time</li>
-              <li>Consistency matters more than perfection</li>
-              <li>Keep aroma usage short and supervised</li>
-            </ul>
-          </div>
-        </div>
+        
 
       </div>
     </main>

@@ -1,1017 +1,832 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Astha</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Astha – Dr. Kalpana</title>
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
 
-  <style>
-    /* ---------- FIXED NAVBAR ---------- */
-    body {
-      background: #fff;
-      padding-top: 0px;
-      /* prevents content from hiding behind navbar */
-    }
-
-    .navbar.fixed-top-custom {
-      position: sticky;
-      top: 0;
-      z-index: 2000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-      backdrop-filter: blur(6px);
-    }
-
-    /* ---------- Hero Carousel ---------- */
-    .hero-carousel .carousel-item {
-      height: 70vh;
-      min-height: 360px;
-      overflow: hidden;
-    }
-
-    .hero-carousel .carousel-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero-carousel {
-      /* default padding so feature bar has space in desktop */
-      padding-bottom: 80px;
-      position: relative;
-    }
-
-    /* ---------- Feature bar styling ---------- */
-    .feature-bar {
-      position: absolute;
-      bottom: 35px;
-      left: 50%;
-      transform: translateX(-50%);
-      margin: 0;
-      max-width: 1100px;
-      background:#d4e8fd;  /* Clean semi-white for clarity */
-      border-radius: 14px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-      overflow: visible;
-      z-index: 105;
-      width: calc(100% - 40px);
-    }
-
-    .feature-bar .d-flex.w-100 {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-around;
-    }
-
-    .feature-link {
-      display: flex;
-      align-items: center;
-      padding: 18px 20px;
-      text-decoration: none;
-      color: inherit;
-      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-      min-height: 64px;
-      box-sizing: border-box;
-      flex: 1;
-      justify-content: center;
-    }
-
-    .feature-link+.feature-link {
-      border-left: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
-    .feature-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      width: 100%;
-    }
-
-    .feature-item img {
-      width: 32px;
-      height: 32px;
-      object-fit: contain;
-      transition: transform .18s ease;
-    }
-
-    .feature-link:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
-      background: #f0f8ff;
-      border-radius: 12px;
-    }
-
-    .feature-link:hover .feature-item img {
-      transform: scale(1.14);
-    }
-
-    /* ---------- 720px wrap ---------- */
-    @media (max-width:720px) {
-      .hero-carousel {
-        padding-bottom: 64px; /* leave a small area for UX overlap if needed */
+    <style>
+      /* ---------- THEME COLORS (naturopathy) ---------- */
+      :root{
+        --leaf-green:#2f8f4a;        /* primary */
+        --leaf-green-dark:#256f3b;
+        --soft-cream:#fbf9f2;        /* background accents */
+        --moss:#b5d6b0;              /* hero overlay */
+        --muted:#6c757d;
+        --card-shadow: 0 10px 26px rgba(28, 56, 36, 0.06);
       }
 
+      /* ---------- GLOBAL ---------- */
+      body {
+        background: linear-gradient(180deg, #f6fbf6 0%, #e9f6ea 100%);
+        padding-top: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        color: #10321f;
+      }
+
+      a { color: var(--leaf-green); }
+      a:hover { color: var(--leaf-green-dark); text-decoration: none; }
+
+      /* ---------- NAVBAR ---------- */
+      .navbar.fixed-top-custom {
+        position: sticky;
+        top: 0;
+        z-index: 2000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        backdrop-filter: blur(6px);
+        background: linear-gradient(180deg, rgba(47,143,74,0.06), rgba(255,255,255,0.7)) !important;
+        padding: 8px 0;
+      }
+
+      .navbar-brand img {
+        width: 72px;
+        height: 72px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid rgba(47,143,74,0.12);
+      }
+
+      /* primary CTA / outline styles */
+      .promo-btn-primary {
+        background: var(--leaf-green);
+        border: none;
+        padding: 10px 26px;
+        color: white;
+        font-weight: 600;
+        border-radius: 6px;
+        margin-right: 12px;
+        display:inline-block;
+        text-decoration:none;
+        transition: all .18s ease;
+      }
+      .promo-btn-primary:hover{
+        background: var(--leaf-green-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(47,143,74,0.12);
+      }
+
+      .promo-btn-outline {
+        background: transparent;
+        border: 2px solid var(--leaf-green);
+        padding: 9px 26px;
+        color: var(--leaf-green);
+        font-weight: 600;
+        border-radius: 6px;
+        text-decoration: none;
+        display:inline-block;
+        transition: all .18s ease;
+      }
+
+      .promo-btn-outline:hover {
+        background: var(--leaf-green);
+        color: #fff;
+        border-color: var(--leaf-green);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(47,143,74,0.12);
+      }
+
+      /* ---------- HERO CAROUSEL ---------- */
+      .hero-carousel .carousel-item {
+        height: 70vh;
+        min-height: 360px;
+        overflow: hidden;
+      }
+
+      .hero-carousel .carousel-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(.95) contrast(0.98);
+      }
+
+      .hero-carousel {
+        padding-bottom: 80px;
+        position: relative;
+      }
+
+      .hero-promo-box {
+        position: absolute;
+        top: 16%;
+        left: 7%;
+        width: 45%;
+        padding: 28px 36px;
+        background: linear-gradient(180deg, rgba(181,214,176,0.95), rgba(255,255,255,0.92));
+        backdrop-filter: blur(8px);
+        border-radius: 12px;
+        z-index: 200;
+        box-shadow: var(--card-shadow);
+        color: #083219;
+      }
+
+      .hero-promo-box h1 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        line-height:1.05;
+      }
+
+      .hero-promo-box p {
+        font-size: 16px;
+        margin-bottom: 18px;
+        color: #214d2f;
+      }
+
+      /* ---------- FEATURE BAR ---------- */
       .feature-bar {
-        position: static !important;
-        bottom: auto !important;
-        transform: none !important;
-        left: auto !important;
-        margin: 20px auto !important;
-        width: calc(100% - 40px) !important;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        max-width: 1100px;
+        background: linear-gradient(180deg,#eaf7ea,#ffffff);
+        border-radius: 14px;
+        box-shadow: 0 6px 18px rgba(20,70,30,0.06);
+        overflow: visible;
+        z-index: 105;
+        width: calc(100% - 40px);
       }
 
       .feature-bar .d-flex.w-100 {
-        flex-wrap: wrap;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
       }
 
       .feature-link {
-        min-width: 50%;
-        flex: 0 0 50%;
-        padding: 14px;
+        display: flex;
+        align-items: center;
+        padding: 16px 18px;
+        text-decoration: none;
+        color: inherit;
+        transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+        min-height: 62px;
+        box-sizing: border-box;
+        flex: 1;
+        justify-content: center;
       }
 
-      .feature-link+.feature-link {
-        border-left: none;
+      .feature-item {
+        display:flex;
+        align-items:center;
+        gap:14px;
       }
 
-      .feature-link:nth-child(odd) {
-        border-right: 1px solid rgba(0, 0, 0, 0.04);
-      }
-
-      .feature-link:nth-child(n+3) {
-        border-top: 1px solid rgba(0, 0, 0, 0.04);
+      .feature-item i {
+        font-size:22px;
+        color: var(--leaf-green);
       }
 
       .feature-link:hover {
-        transform: none;
-        box-shadow: none;
+        transform: translateY(-6px);
+        box-shadow: 0 10px 26px rgba(20,70,30,0.08);
+        background: rgba(47,143,74,0.06);
+        border-radius: 12px;
       }
 
-      .feature-item img {
-        width: 28px;
-        height: 28px;
-      }
-      /* reduce carousel height on tablet/mobile */
-      .hero-carousel .carousel-item {
-        height: 55vh;
-        min-height: 220px;
-      }
-    }
-
-    /* ---------- 480px horizontal scroll ---------- */
-    @media (max-width:480px) {
-      .hero-carousel {
-        margin-bottom: 0;
-        padding-bottom: 56px; /* reduce space for mobile */
+      /* ---------- DR SECTION ---------- */
+      .doctor-photo {
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 12px 34px rgba(20,70,30,0.08);
       }
 
-      .feature-bar {
-        position: static !important;
-        transform: none !important;
-        bottom: auto !important;
-        left: auto !important;
-        margin: 15px auto !important;
-        width: calc(100% - 30px) !important;
+      .doctor-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display:block;
       }
 
-      .feature-scroll-container {
-        position: relative;
-        padding: 0 36px;
+      .badge-speciality {
+        display: inline-block;
+        background: rgba(47,143,74,0.09);
+        color: var(--leaf-green-dark);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        margin-right: 6px;
+        margin-bottom: 6px;
+        font-weight:600;
       }
 
-      .feature-bar .d-flex.w-100 {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        gap: 6px;
-        padding: 6px;
-        scroll-snap-type: x mandatory;
-      }
-      /* reduce carousel height on narrow phones */
-      .hero-carousel .carousel-item {
-        height: 46vh;
-        min-height: 160px;
+      /* ---------- THERAPIES SECTION ---------- */
+      .card {
+        border-radius: 16px;
+        border: none;
+        box-shadow: 0 10px 24px rgba(20,70,30,0.05);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
       }
 
-      .feature-link {
-        min-width: 180px;
-        flex: 0 0 auto;
-        scroll-snap-align: start;
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 36px rgba(20,70,30,0.10);
       }
 
-      /* scroll arrows */
-      .scroll-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 36px;
-        height: 36px;
-        background: #fff;
+      .card-body .icon-circle {
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        z-index: 20;
-        cursor: pointer;
+        background: rgba(47,143,74,0.08);
+        color: var(--leaf-green);
+        margin-bottom: 10px;
+        font-size:18px;
       }
 
-      .scroll-btn-left {
-        left: 6px;
+      /* ---------- TESTIMONIALS ---------- */
+      .testimonials-section {
+        margin-top: 30px;
+        margin-bottom: 30px;
       }
 
-      .scroll-btn-right {
-        right: 6px;
+      .testimonials-wrap {
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        padding: 12px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
       }
 
-      /* fade edges */
-      .fade-edge {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 34px;
-        pointer-events: none;
-        z-index: 15;
+      .testimonial-card {
+        flex: 0 0 320px;
+        background: #ffffffcc;
+        border-radius: 12px;
+        box-shadow: 0 8px 22px rgba(20,70,30,0.04);
+        padding: 18px;
+        scroll-snap-align: start;
+        border: 1px solid rgba(20,70,30,0.03);
       }
 
-      .fade-left {
-        left: 0;
-        background: linear-gradient(90deg, rgba(246, 251, 255, 1), rgba(246, 251, 255, 0));
-      }
-
-      .fade-right {
-        right: 0;
-        background: linear-gradient(270deg, rgba(246, 251, 255, 1), rgba(246, 251, 255, 0));
-      }
-    }
-
-    /* ---------- Testimonials (horizontal scroll, no JS) ---------- */
-    .testimonials-section {
-      margin-top: 30px;
-      margin-bottom: 30px;
-    }
-
-    .testimonials-wrap {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      padding: 12px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .testimonial-card {
-      flex: 0 0 320px; /* change to show more/less */
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 22px rgba(15, 40, 90, 0.06);
-      padding: 18px;
-      scroll-snap-align: start;
-      border: 1px solid rgba(0,0,0,0.03);
-    }
-
-    .testimonial-body {
-      font-size: 14px;
-      color: #333;
-      margin-bottom: 12px;
-      line-height: 1.45;
-    }
-
-    .testimonial-meta {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .testimonial-meta img {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #e9f3ff;
-    }
-
-    .testimonial-meta .meta-text {
-      font-size: 14px;
-    }
-
-    .testimonial-meta .meta-text .name {
-      font-weight: 600;
-    }
-
-    /* small scrollbar styling for webkit */
-    .testimonials-wrap::-webkit-scrollbar {
-      height: 8px;
-    }
-    .testimonials-wrap::-webkit-scrollbar-thumb {
-      background: rgba(13,110,253,0.15);
-      border-radius: 999px;
-    }
-
-    @media (max-width: 768px) {
-      .testimonial-card { flex: 0 0 280px; }
-    }
-    @media (max-width: 480px) {
-      .testimonial-card { flex: 0 0 85%; } /* show one card mostly on tiny phones */
-    }
-
-    /* footer */
-    .card-img-top {
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .footer-link {
-      color: #cde2f5;
-      text-decoration: none;
-    }
-
-    .footer-link:hover {
-      color: #fff;
-      text-decoration: underline;
-    }
-
-    #loginModal .modal-content {
-      background-image: url('llbg.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    .modal-content {
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .input-group-text {
-      border-radius: 30px 0 0 30px !important;
-      border: none;
-    }
-
-    .form-control {
-      border-radius: 0 30px 30px 0 !important;
-      border: none;
-      background: #eaf3f7;
-    }
-
-    .btn-primary {
-      border-radius: 30px;
-    }
-
-    #loginModal h6 {
-      color: white !important;
-    }
-
-    #signupModal .modal-content {
-      position: relative;
-      background-image: url('llbg.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      border-radius: 10px;
-      overflow: hidden;
-      color: #fff;
-    }
-
-    #signupModal .modal-content::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-    }
-
-    #signupModal .modal-header,
-    #signupModal .modal-body,
-    #signupModal .modal-footer {
-      position: relative;
-      z-index: 2;
-    }
-
-    .navbar.fixed-top-custom {
-      z-index: 1040 !important;
-    }
-
-    .modal-backdrop {
-      z-index: 1055 !important;
-    }
-
-    .modal {
-      z-index: 1060 !important;
-    }
-
-    /* Card hover effect */
-    .card {
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 26px rgba(0,0,0,0.18);
-    }
-
-    /* Image zoom on hover */
-    .card img {
-      transition: transform 0.35s ease;
-    }
-
-    .card:hover img {
-      transform: scale(1.06);
-    }
-
-    .card-body .btn-outline-primary {
-      transition: background .25s ease, color .25s ease;
-    }
-
-    .card:hover .btn-outline-primary {
-      background: #0d6efd;
-      color: #fff;
-    }
-
-    .shadow img {
-      border-radius: 20px;
-    }
-
-    .hero-promo-box {
-      position: absolute;
-      top: 16%;
-      left: 7%;
-      width: 45%;
-      padding: 32px 45px;
-      background: rgba(124, 246, 106, 0.75);  
-
-      backdrop-filter: blur(10px);
-      border-radius: 6px;
-      z-index: 200;
-    }
-
-    .hero-promo-box h1 {
-      font-size: 40px;
-      font-weight: bold;
-      margin-bottom: 14px;
-    }
-
-    .hero-promo-box p {
-      font-size: 17px;
-      margin-bottom: 20px;
-    }
-
-    .promo-btn-primary {
-      background: #0d6efd;
-      border: none;
-      padding: 10px 26px;
-      color: white;
-      font-weight: 600;
-      border-radius: 4px;
-      margin-right: 12px;
-    }
-
-    .promo-btn-outline {
-      background: transparent;
-      border: 2px solid #0d6efd;
-      padding: 9px 26px;
-      color: #0d6efd;
-      font-weight: 600;
-      border-radius: 4px;
-    }
-
-    /* --- responsive hero promo box --- */
-    @media (max-width: 992px) {
-      .hero-promo-box {
-        width: 65%;
-        top: 14%;
-        left: 5%;
-        padding: 24px;
-      }
-
-      .hero-promo-box h1 {
-        font-size: 32px;
-      }
-
-      .hero-promo-box p {
-        font-size: 15px;
-      }
-
-      .promo-btn-primary,
-      .promo-btn-outline {
-        width: 100%;
-        margin-bottom: 8px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hero-promo-box {
-        width: 80%;
-        top: 10%;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 20px;
-        text-align: center;
-      }
-
-      .hero-promo-box h1 {
-        font-size: 24px;
-      }
-
-      .hero-promo-box p {
+      .testimonial-body {
         font-size: 14px;
-        margin-bottom: 16px;
+        color: #123; 
+        margin-bottom: 12px;
+        line-height: 1.45;
       }
 
-      .promo-btn-primary,
-      .promo-btn-outline {
-        width: 100%;
-        margin-right: 0;
-        font-size: 14px;
-        padding: 8px 18px;
+      .testimonial-meta img {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(47,143,74,0.08);
       }
-    }
-    
-  </style>
-</head>
-<body>
 
-  <!-- NAVBAR (fixed) -->
-  <nav class="navbar navbar-expand-lg bg-info-subtle fixed-top-custom" data-bs-theme="light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Astha</a>
+      .testimonials-wrap::-webkit-scrollbar {
+        height: 8px;
+      }
+      .testimonials-wrap::-webkit-scrollbar-thumb {
+        background: rgba(47,143,74,0.14);
+        border-radius: 999px;
+      }
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      /* ---------- BOOK SECTION ---------- */
+      .book-box {
+        border-radius: 16px;
+        background: linear-gradient(180deg,#fbfff9,#f0fbef);
+        padding: 28px;
+        box-shadow: 0 12px 28px rgba(20,70,30,0.06);
+      }
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      .book-box h3 { color: #0b3920; }
 
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="aboutus.html">About us</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact us</a></li>
+      /* ---------- FOOTER ---------- */
+      footer {
+        background: #123a22;
+        color: #dfeee1;
+      }
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Services</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Consultation</a></li>
-              <li><a class="dropdown-item" href="#">Family Doctor</a></li>
-              <li><a class="dropdown-item" href="#">Radiology</a></li>
-              <li><a class="dropdown-item" href="#">Pathology Test</a></li>
-            </ul>
-          </li>
-        </ul>
+      .footer-link {
+        color: #dfeee1;
+        text-decoration: none;
+      }
 
-        <form class="d-flex me-2">
-          <input class="form-control me-2" type="search" placeholder="Search" />
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-        <button class="btn btn-outline-success m-2" data-bs-toggle="modal" data-bs-target="#loginModal">
-          Login
+      .footer-link:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+      @media (max-width: 992px) {
+        .hero-promo-box {
+          width: 78%;
+          top: 14%;
+          left: 5%;
+          padding: 20px;
+        }
+
+        .hero-promo-box h1 {
+          font-size: 30px;
+        }
+
+        .promo-btn-primary,
+        .promo-btn-outline {
+          width: 100%;
+          margin-bottom: 8px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .hero-carousel {
+          padding-bottom: 64px;
+        }
+
+        .hero-carousel .carousel-item {
+          height: 55vh;
+          min-height: 220px;
+        }
+
+        .feature-bar {
+          position: static !important;
+          bottom: auto !important;
+          transform: none !important;
+          left: auto !important;
+          margin: 20px auto !important;
+          width: calc(100% - 40px) !important;
+        }
+
+        .feature-bar .d-flex.w-100 {
+          flex-wrap: wrap;
+        }
+
+        .feature-link {
+          min-width: 50%;
+          flex: 0 0 50%;
+          padding: 12px;
+        }
+
+        .feature-link + .feature-link {
+          border-left: none;
+        }
+
+        .feature-link:nth-child(odd) {
+          border-right: 1px solid rgba(20,70,30,0.04);
+        }
+
+        .feature-link:nth-child(n + 3) {
+          border-top: 1px solid rgba(20,70,30,0.04);
+        }
+
+        .testimonials-section .testimonial-card {
+          flex: 0 0 280px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero-promo-box {
+          width: 86%;
+          top: 10%;
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 18px;
+          text-align: center;
+        }
+
+        .hero-promo-box h1 {
+          font-size: 22px;
+        }
+
+        .hero-promo-box p {
+          font-size: 14px;
+        }
+
+        .hero-carousel .carousel-item {
+          height: 46vh;
+          min-height: 160px;
+        }
+
+        .testimonials-section .testimonial-card {
+          flex: 0 0 85%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR (simple landing) -->
+    <nav class="navbar navbar-expand-lg fixed-top-custom" data-bs-theme="light">
+      <div class="container">
+        <a class="navbar-brand" href="./index3.html"
+          ><img src="./asthafinallogo.png" alt="Astha Logo"
+        /></a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
         </button>
-        <button class="btn btn-outline-success m-2" data-bs-toggle="modal" data-bs-target="#signupModal">
-          Signup
-        </button>
-      </div>
-    </div>
-  </nav>
 
-  <div class="modal" tabindex="-1" id="loginModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" style="color: whitesmoke;">Login</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body p-0">
-
-          <div class="login-graphic text-white py-4 px-3 text-center">
-            <h4>Welcome to the website</h4>
-            <p style="font-size: 14px; opacity: 0.9;">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-            </p>
-          </div>
-
-          <div class="p-4">
-            <h6 class="text-center mb-4">USER LOGIN</h6>
-
-            <div class="input-group mb-3">
-              <span class="input-group-text bg-primary text-white">
-                <i class="bi bi-person-fill"></i>
-              </span>
-              <input type="text" class="form-control" placeholder="Username">
-            </div>
-
-            <div class="input-group mb-3">
-              <span class="input-group-text bg-primary text-white">
-                <i class="bi bi-lock-fill"></i>
-              </span>
-              <input type="password" class="form-control" placeholder="Password">
-            </div>
-
-            <div class="d-flex justify-content-between small mb-3">
-              <label><input type="checkbox"> Remember</label>
-              <a href="#" class="text-primary">Forgot Password?</a>
-            </div>
-
-            <div class="text-center">
-              <button class="btn btn-primary px-5">Login</button>
-            </div>
-          </div>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <a href="bookap.html" class="promo-btn-primary"
+            >Book Appointment</a
+          >
         </div>
       </div>
-    </div>
-  </div>
+    </nav>
 
-  <div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header border-0">
-          <h5 class="modal-title" style="color: #fff;">Signup</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <h6 class="text-center mb-4" style="color:#fff;">CREATE ACCOUNT</h6>
-          <div class="input-group mb-3">
-            <span class="input-group-text bg-primary text-white">
-              <i class="bi bi-person-fill"></i>
-            </span>
-            <input type="text" class="form-control" placeholder="Full Name">
-          </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text bg-primary text-white">
-              <i class="bi bi-envelope-fill"></i>
-            </span>
-            <input type="email" class="form-control" placeholder="Email">
-          </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text bg-primary text-white">
-              <i class="bi bi-lock-fill"></i>
-            </span>
-            <input type="password" class="form-control" placeholder="Password">
-          </div>
-
-          <div class="input-group mb-3">
-            <span class="input-group-text bg-primary text-white">
-              <i class="bi bi-lock-fill"></i>
-            </span>
-            <input type="password" class="form-control" placeholder="Confirm Password">
-          </div>
-          <div class="text-center">
-            <button class="btn btn-primary px-5">Signup</button>
-          </div>
-          <div class="text-center mt-3 small">
-            Already have an account?
-            <a href="#" class="text-warning" data-bs-target="#loginModal" data-bs-toggle="modal"
-              data-bs-dismiss="modal">
-              Login
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- HERO CAROUSEL -->
-  <section class="hero-carousel">
-
+    <!-- HERO CAROUSEL + PROMO -->
+    <section class="hero-carousel">
       <div class="hero-promo-box">
-      <h1>Your Health, Our Priority.</h1>
-      <p>Providing trusted healthcare services, experienced specialists, and 24/7 patient support.</p>
-      <button class="promo-btn-primary" onclick="location.href='bookap.html'">Book Appointment</button>
-      <button class="promo-btn-outline" onclick="location.href='aboutus.html'">Learn More</button>
-    </div>
-    
-    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active"><img src="1d.jpg" class="d-block w-100"></div>
-        <div class="carousel-item"><img src="2d.jpg" class="d-block w-100"></div>
-        <div class="carousel-item"><img src="3d.jpg" class="d-block w-100"></div>
+        <h1>Holistic Healing with Dr. Kalpana</h1>
+        <p>
+          Naturopath & Aroma Therapist offering gentle, natural therapies for
+          pain, migraine, and children’s behaviour concerns.
+        </p>
+        <a href="bookap.html" class="promo-btn-primary">Book Appointment</a>
+        <a href="meet-dr-kalpana.html" class="promo-btn-outline">
+          Meet Dr. Kalpana
+        </a>
       </div>
 
-      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </button>
+      <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="./bg1.jpg" class="d-block w-100" alt="" />
+          </div>
+          <div class="carousel-item">
+            <img src="./bg2.jpg" class="d-block w-100" alt="" />
+          </div>
+          <div class="carousel-item">
+            <img src="./bg3.jpg" class="d-block w-100" alt="" />
+          </div>
+        </div>
 
-      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </button>
-    </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#heroCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon"></span>
+        </button>
 
-    <!-- FEATURE BAR -->
-    <div class="feature-bar">
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#heroCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
 
-      <div class="feature-scroll-container">
-        <!-- arrows only on tiny phones -->
-        <div class="scroll-btn scroll-btn-left d-md-none" id="featLeftBtn"><i class="bi bi-chevron-left"></i></div>
-        <div class="scroll-btn scroll-btn-right d-md-none" id="featRightBtn"><i class="bi bi-chevron-right"></i></div>
-
-        <!-- fade edges -->
-        <div class="fade-edge fade-left d-md-none" id="fadeLeft"></div>
-        <div class="fade-edge fade-right d-md-none" id="fadeRight"></div>
-
-        <div class="d-flex w-100" id="featureScroll">
-
-          <a href="bookap.html" class="feature-link">
+      <!-- FEATURE BAR – therapies quick links -->
+      <div class="feature-bar">
+        <div class="d-flex w-100">
+          <a href="shockwave.html" class="feature-link">
             <div class="feature-item">
-              <img src="calendar.png">
+              <i class="bi bi-activity"></i>
               <div>
-                <div class="fw-semibold">Book Appointment</div>
-                <div class="small text-muted">Quick & easy</div>
+                <div class="fw-semibold">Shockwave Therapy</div>
+                <div class="small text-muted">Non-invasive pain care</div>
               </div>
             </div>
           </a>
 
-          <a href="find-doctor.html" class="feature-link">
+          <a href="migraine.html" class="feature-link">
             <div class="feature-item">
-              <img src="doctor.png">
+              <i class="bi bi-brightness-high"></i>
               <div>
-                <div class="fw-semibold">Find a Doctor</div>
-                <div class="small text-muted">Specialists</div>
+                <div class="fw-semibold">Migraine Healing</div>
+                <div class="small text-muted">Natural, drug-free relief</div>
               </div>
             </div>
           </a>
 
-          <a href="package.html" class="feature-link">
+          <a href="./fullbody.html" class="feature-link">
             <div class="feature-item">
-              <img src="stethoscope.png">
+              <i class="bi bi-body-text"></i>
               <div>
-                <div class="fw-semibold">Health Package</div>
-                <div class="small text-muted">Preventive care</div>
+                <div class="fw-semibold">Full Body Check-up</div>
+                <div class="small text-muted">Preventive wellness</div>
               </div>
             </div>
           </a>
 
-          <a href="opinion.html" class="feature-link">
+          <a href="child-behaviour.html" class="feature-link">
             <div class="feature-item">
-              <img src="opinion.png">
+              <i class="bi bi-emoji-smile"></i>
               <div>
-                <div class="fw-semibold">Second Opinion</div>
-                <div class="small text-muted">Expert reviews</div>
+                <div class="fw-semibold">Child Behaviour Care</div>
+                <div class="small text-muted">Gentle natural support</div>
               </div>
             </div>
           </a>
+        </div>
+      </div>
+    </section>
 
-          <a href="services.html" class="feature-link">
-            <div class="feature-item">
-              <img src="patient-care.png">
-              <div>
-                <div class="fw-semibold">Our Services</div>
-                <div class="small text-muted">All specialties</div>
+    <!-- MEET DR KALPANA -->
+    <section id="doctor" class="py-5">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <span class="badge-speciality">Dr. Kalpana</span>
+            <span class="badge-speciality">Naturopath</span>
+            <span class="badge-speciality">Aroma Therapist</span>
+
+            <h2 class="fw-bold mt-3 mb-3">
+              Personalized natural therapies for your mind and body.
+            </h2>
+            <p class="mb-3" style="font-size: 16px">
+              Dr. Kalpana specializes in evidence-based naturopathy and aroma
+              therapy to help patients manage chronic pain, migraine, and
+              emotional or behavioural challenges in children through gentle,
+              non-invasive methods.
+            </p>
+            <p class="mb-4" style="font-size: 16px">
+              Each treatment plan is tailored to your lifestyle, health history
+              and comfort, focusing on long-term healing instead of just
+              temporary symptom relief.
+            </p>
+
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2">
+                <i class="bi bi-check-circle-fill" style="color: #48b06a; margin-right:8px;"></i>
+                One-to-one consulting with Dr. Kalpana only
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-check-circle-fill" style="color: #48b06a; margin-right:8px;"></i>
+                Natural, drug-free approaches where possible
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-check-circle-fill" style="color: #48b06a; margin-right:8px;"></i> Calm,
+                supportive environment for families
+              </li>
+            </ul>
+
+            <a href="#book" class="promo-btn-primary">Book your consultation</a>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="doctor-photo">
+              <!-- Replace with real photo: dr-kalpana.jpg -->
+              <img src="dr-kalpana.jpg" alt="Dr Kalpana" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THERAPIES BY DR KALPANA -->
+    <section id="therapies" class="py-5" style="background: #f8faf6">
+      <div class="container">
+        <h2 class="text-center fw-bold mb-3">Therapies by Dr. Kalpana</h2>
+        <p class="text-center text-muted mb-5">
+          Focused, natural treatments designed to reduce pain, restore balance,
+          and support holistic well-being.
+        </p>
+
+        <div
+          class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center"
+        >
+          <!-- Shockwave Therapy -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <div class="icon-circle mb-2">
+                  <i class="bi bi-activity"></i>
+                </div>
+                <h5 class="card-title fw-bold">Shockwave Therapy</h5>
+                <p class="card-text text-muted">
+                  Non-invasive therapy to help relieve chronic pain, stiffness
+                  and muscle tightness by stimulating natural healing in the
+                  tissues.
+                </p>
               </div>
             </div>
-          </a>
+          </div>
 
+          <!-- Natural Healing for Migraine -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <div class="icon-circle mb-2">
+                  <i class="bi bi-brightness-high"></i>
+                </div>
+                <h5 class="card-title fw-bold">Natural Healing for Migraine</h5>
+                <p class="card-text text-muted">
+                  Aroma therapy and naturopathic protocols aimed at reducing
+                  migraine frequency, intensity and triggers without heavy
+                  medications.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Full Body Check-up -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <div class="icon-circle mb-2">
+                  <i class="bi bi-body-text"></i>
+                </div>
+                <h5 class="card-title fw-bold">Full Body Check-up</h5>
+                <p class="card-text text-muted">
+                  A holistic assessment of your lifestyle, stress, diet and
+                  symptoms to identify root causes and design a personalized
+                  wellness plan.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pain Therapy -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <div class="icon-circle mb-2">
+                  <i class="bi bi-clipboard2-pulse"></i>
+                </div>
+                <h5 class="card-title fw-bold">Pain Therapy</h5>
+                <p class="card-text text-muted">
+                  Tailored therapies for back pain, joint pain and muscular
+                  discomfort using gentle natural techniques and lifestyle
+                  corrections.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Natural Healing for Children Behaviour Problem -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <div class="icon-circle mb-2">
+                  <i class="bi bi-emoji-smile"></i>
+                </div>
+                <h5 class="card-title fw-bold">
+                  Natural Healing for Children’s Behaviour
+                </h5>
+                <p class="card-text text-muted">
+                  Soft, supportive approaches combining aroma therapy and
+                  naturopathic guidance to help with focus, mood, sleep, and
+                  emotional balance in children.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- WHAT WE DO -->
-  <section class="py-5" style="background:#f8f9fa;">
-    <div class="container">
-      <h2 class="text-center fw-bold mb-5">What We Do</h2>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+      <div class="container">
+        <h3 class="text-center fw-semibold mb-3">
+          Patients who trusted Dr. Kalpana
+        </h3>
+        <p class="text-center text-muted mb-4">
+          Experiences from people who chose natural healing.
+        </p>
 
-        <div class="col">
-          <div class="card shadow border-0 h-100">
-            <img src="checkup.jpg" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title fw-bold">ANNUAL HEALTH CHECKUP</h5>
-              <p class="card-text text-muted">HEALTH CHECKUP</p>
-              <button class="btn btn-outline-primary">BOOK APPOINTMENT</button>
+        <div class="testimonials-wrap">
+          <article class="testimonial-card">
+            <p class="testimonial-body">
+              "I came with severe shoulder pain and after a few sessions of
+              shockwave and suggested changes, my pain has reduced a lot. I
+              finally sleep better."
+            </p>
+            <div class="testimonial-meta">
+              <img
+                src="https://randomuser.me/api/portraits/women/44.jpg"
+                alt=""
+              />
+              <div class="meta-text">
+                <div class="name">Neha Sharma</div>
+                <div class="small text-muted">Chronic shoulder pain</div>
+              </div>
             </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="col">
-          <div class="card shadow border-0 h-100">
-            <img src="spine.jpg" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title fw-bold">Spine Surgery</h5>
-              <p class="card-text text-muted">Spinal issues explained...</p>
-              <button class="btn btn-outline-primary">BOOK APPOINTMENT</button>
+          <article class="testimonial-card">
+            <p class="testimonial-body">
+              "My migraine attacks have become less frequent and less intense.
+              The aroma blends and lifestyle tips from Dr. Kalpana really
+              helped."
+            </p>
+            <div class="testimonial-meta">
+              <img
+                src="https://randomuser.me/api/portraits/men/55.jpg"
+                alt=""
+              />
+              <div class="meta-text">
+                <div class="name">Rahul Desai</div>
+                <div class="small text-muted">Migraine relief</div>
+              </div>
             </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="col">
-          <div class="card shadow border-0 h-100">
-            <img src="ctscan.avif" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title fw-bold">Whole Body CT Scan</h5>
-              <p class="card-text text-muted">Services available 24 x 7</p>
-              <button class="btn btn-outline-primary">BOOK APPOINTMENT</button>
+          <article class="testimonial-card">
+            <p class="testimonial-body">
+              "We noticed calmer behaviour and better sleep in our child after
+              starting natural support. The approach was very gentle and
+              reassuring."
+            </p>
+            <div class="testimonial-meta">
+              <img
+                src="https://randomuser.me/api/portraits/women/68.jpg"
+                alt=""
+              />
+              <div class="meta-text">
+                <div class="name">Priya Kulkarni</div>
+                <div class="small text-muted">Parent</div>
+              </div>
             </div>
-          </div>
-        </div>
+          </article>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS (horizontal scroll, no JS) -->
-  <section class="testimonials-section">
-    <div class="container">
-      <h3 class="text-center fw-semibold mb-3">What our patients say</h3>
-      <p class="text-center text-muted mb-4">Real stories from real patients — their experience with Astha Hospitals.</p>
-
-      <div class="testimonials-wrap">
-        <!-- Testimonial 1 -->
-        <article class="testimonial-card">
-          <p class="testimonial-body">"I visited Astha last month for a full body check-up. The staff was professional and the doctor explained everything clearly. Quick, friendly, and very reassuring."</p>
-          <div class="testimonial-meta">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Patient photo">
-            <div class="meta-text">
-              <div class="name">Neha Sharma</div>
-              <div class="small text-muted">Pune — Patient</div>
+          <article class="testimonial-card">
+            <p class="testimonial-body">
+              "We noticed calmer behaviour and better sleep in our child after
+              starting natural support. The approach was very gentle and
+              reassuring."
+            </p>
+            <div class="testimonial-meta">
+              <img
+                src="https://randomuser.me/api/portraits/women/68.jpg"
+                alt=""
+              />
+              <div class="meta-text">
+                <div class="name">Priya Kulkarni</div>
+                <div class="small text-muted">Parent</div>
+              </div>
             </div>
-          </div>
-        </article>
-
-        <!-- Testimonial 2 -->
-        <article class="testimonial-card">
-          <p class="testimonial-body">"My father had a complex surgery and the team at Astha took excellent care. The surgeons and nurses were calm and attentive. Recovery has been smooth."</p>
-          <div class="testimonial-meta">
-            <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Patient photo">
-            <div class="meta-text">
-              <div class="name">Rahul Desai</div>
-              <div class="small text-muted">Mumbai — Family member</div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Testimonial 3 -->
-        <article class="testimonial-card">
-          <p class="testimonial-body">"Very impressed by the pediatric department — my child was nervous but the team made him comfortable. Friendly doctors and quick appointments."</p>
-          <div class="testimonial-meta">
-            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Patient photo">
-            <div class="meta-text">
-              <div class="name">Priya Kulkarni</div>
-              <div class="small text-muted">Pune — Parent</div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Testimonial 4 -->
-        <article class="testimonial-card">
-          <p class="testimonial-body">"Great experience overall — modern equipment, clean facilities, and helpful support staff. I felt well taken care of at every step."</p>
-          <div class="testimonial-meta">
-            <img src="https://randomuser.me/api/portraits/men/72.jpg" alt="Patient photo">
-            <div class="meta-text">
-              <div class="name">Suresh Patil</div>
-              <div class="small text-muted">Pune — Patient</div>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY CHOOSE US / LIFE IS PRECIOUS SECTION -->
-  <section class="py-5">
-    <div class="container">
-      <div class="row align-items-center g-5">
-
-        <!-- LEFT TEXT -->
-        <div class="col-lg-6">
-          <h2 class="fw-bold mb-4" style="font-size: 34px;">Life is precious, we care for it.</h2>
-
-          <p class="mb-4" style="font-size: 17px;">
-            Astha Hospitals is dedicated to preserving and enhancing every life through our
-            compassionate, patient-focused approach. Our skilled healthcare professionals
-            are committed to providing the highest quality medical services and support.
-          </p>
-
-          <p class="mb-4" style="font-size: 17px;">
-            Patients can trust us with their health and well-being, confident they are in
-            expert and caring hands.
-          </p>
-
-          <a href="aboutus.html" class="btn btn-outline-primary px-4 py-2 rounded-pill fw-semibold">Why choose Astha</a>
-        </div>
-
-        <!-- RIGHT IMAGE -->
-        <div class="col-lg-6 d-flex justify-content-center">
-          <div class="shadow" style="border-radius: 20px; overflow: hidden;">
-            <img src="hand to hand.webp" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="pt-5 pb-4" style="background:#003e6f;color:#cde2f5">
-    <div class="container">
-      <div class="row text-center mb-4">
-        <div class="col-lg-12">
-          <h5 class="mb-3">Life is precious, we care for it.</h5>
-          <a href="bookap.html" class="btn btn-outline-light px-4 py-2">Book an appointment</a>
+          </article>
         </div>
       </div>
+    </section>
 
-      <div class="row mt-4">
+    <!-- BOOK APPOINTMENT / CONTACT -->
+    <section id="book" class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <div class="book-box text-center">
+              <h3 class="fw-bold mb-3">Ready to begin your healing journey?</h3>
+              <p class="text-muted mb-4">
+                Book a one-to-one consultation with
+                <strong>Dr. Kalpana</strong> and explore natural options for
+                pain, migraine, or children’s behaviour support.
+              </p>
 
-        <div class="col-lg-4 mb-4">
-          <img src="images/your_logo.png" style="height:60px">
-          <p class="mt-3 small">Astha Hospital is a multispeciality medical centre.</p>
+              <div class="mb-3">
+                <p class="mb-1">
+                  <i class="bi bi-telephone-fill me-2" style="color:var(--leaf-green);"></i>Call / WhatsApp:
+                </p>
+                <h4 class="mb-3" style="color:var(--leaf-green);">+91-90000-00000</h4>
+              </div>
+
+              <a href="tel:+919000000000" class="promo-btn-primary me-2 mb-2">
+                <i class="bi bi-telephone-inbound me-1"></i> Call Now
+              </a>
+              <a href="https://wa.me/919000000000" class="promo-btn-outline mb-2">
+                <i class="bi bi-whatsapp me-1"></i> WhatsApp Us
+              </a>
+
+              <p class="small text-muted mt-3 mb-0">
+                Clinic timings: 10:00 AM – 7:00 PM (Mon–Sat)
+              </p>
+            </div>
+          </div>
         </div>
-
-        <div class="col-lg-2 col-md-6 mb-4">
-          <h6>About Astha</h6>
-          <ul class="list-unstyled small">
-            <li><a class="footer-link" href="#">Overview</a></li>
-            <li><a class="footer-link" href="#">Leadership</a></li>
-            <li><a class="footer-link" href="#">Accreditations</a></li>
-            <li><a class="footer-link" href="#">Achievements</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-6 mb-4">
-          <h6>Quick Links</h6>
-          <ul class="list-unstyled small">
-            <li><a class="footer-link" href="#">Services</a></li>
-            <li><a class="footer-link" href="#">Gallery</a></li>
-            <li><a class="footer-link" href="#">Contact</a></li>
-            <li><a class="footer-link" href="#">Career</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-6 mb-4">
-          <h6>Locations</h6>
-          <ul class="list-unstyled small">
-            <li>Main Hospital</li>
-            <li>Clinic A</li>
-            <li>Clinic B</li>
-            <li>Lab Centre</li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-6 mb-4">
-          <h6>Contact</h6>
-          <p class="small mb-1"><i class="bi bi-telephone-fill me-2"></i> +91-90000-00000</p>
-          <button class="btn btn-success btn-sm mt-2">Pay Online</button>
-        </div>
-
       </div>
+    </section>
 
-      <hr style="border-color:#275278" />
-      <p class="text-center small mb-0">© 2025 Astha Hospital. All Rights Reserved.</p>
+    <!-- FOOTER (simple) -->
+    <footer class="pt-4 pb-3">
+      <div class="container text-center">
+        <h6 class="mb-2" style="color:#dfeee1;">Astha – Naturopathy & Aroma Therapy</h6>
+        <p class="small mb-1">Life is precious, we care for it.</p>
+        <p class="small mb-1">
+          <i class="bi bi-geo-alt-fill me-1"></i> Your clinic address here,
+          City, State
+        </p>
+        <p class="small mb-0">© 2025 Astha. All Rights Reserved.</p>
+      </div>
+    </footer>
 
-    </div>
-  </footer>
-
-  <!-- Scroll JS for feature bar arrows (kept, but testimonials do not require JS) -->
-  <script>
-    (function () {
-      const scroller = document.getElementById('featureScroll');
-      const leftBtn = document.getElementById('featLeftBtn');
-      const rightBtn = document.getElementById('featRightBtn');
-      const fadeLeft = document.getElementById('fadeLeft');
-      const fadeRight = document.getElementById('fadeRight');
-
-      function isNarrow() {
-        return window.matchMedia('(max-width: 480px)').matches;
-      }
-
-      function updateUI() {
-        updateArrows();
-        updateFades();
-      }
-
-      function updateArrows() {
-        if (!isNarrow()) return;
-
-        const maxScroll = scroller.scrollWidth - scroller.clientWidth;
-        const cur = scroller.scrollLeft;
-
-        leftBtn.style.opacity = cur <= 5 ? "0.3" : "1";
-        rightBtn.style.opacity = cur >= maxScroll - 5 ? "0.3" : "1";
-      }
-
-      function updateFades() {
-        if (!isNarrow()) return;
-
-        const maxScroll = scroller.scrollWidth - scroller.clientWidth;
-        const cur = scroller.scrollLeft;
-
-        fadeLeft.style.opacity = Math.min(1, cur / 40);
-        fadeRight.style.opacity = Math.min(1, (maxScroll - cur) / 40);
-      }
-
-      leftBtn.addEventListener("click", () => scroller.scrollBy({ left: -180, behavior: "smooth" }));
-      rightBtn.addEventListener("click", () => scroller.scrollBy({ left: 180, behavior: "smooth" }));
-
-      scroller.addEventListener("scroll", updateUI);
-      window.addEventListener("resize", updateUI);
-      document.addEventListener("DOMContentLoaded", updateUI);
-    })();
-  </script>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
+

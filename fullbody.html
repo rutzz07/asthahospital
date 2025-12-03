@@ -149,6 +149,30 @@
       border-top: 4px solid rgba(255,255,255,0.02);
     }
 
+    /* FAQ: CSS-only accordion using details/summary */
+    .faq-accordion details { border-top:1px solid rgba(20,70,30,0.04); padding:0; }
+    .faq-accordion details:first-child { border-top:none; }
+    .faq-accordion summary {
+      list-style:none;
+      cursor:pointer;
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      font-weight:700;
+      color: var(--leaf-dark);
+      margin:0;
+    }
+    .faq-accordion summary::-webkit-details-marker { display:none; }
+    .faq-accordion .faq-title { flex:1; }
+    .faq-accordion .faq-arrow { width:18px; height:18px; display:inline-block; transition: transform .24s ease; flex-shrink:0; }
+    .faq-accordion details[open] .faq-arrow { transform: rotate(180deg); }
+    .faq-accordion .answer { padding:12px 16px 18px 16px; color:var(--muted); }
+
+    /* keyboard focus */
+    .faq-accordion summary:focus { outline:3px solid rgba(47,143,74,0.12); border-radius:8px; }
+
     /* responsive */
     @media (max-width: 992px) {
       .hero { padding: 52px 0; min-height: 40vh; }
@@ -166,7 +190,7 @@
   <!-- NAVBAR -->
   <header class="topbar">
     <div class="container d-flex justify-content-between align-items-center">
-      <a class="brand" href="index3.html">
+      <a class="brand" href="index.html">
         <img src="asthafinallogo.png" alt="Astha logo">
         <div>
           <div class="clinic">Astha Clinic</div>
@@ -175,8 +199,8 @@
       </a>
 
       <nav>
-        <a href="index3.html" class="btn btn-outline-leaf btn-sm me-2">Home</a>
-        <a href="tel:+919000000000" class="btn btn-leaf btn-sm">Call Now</a>
+        <a href="index.html" class="btn btn-outline-leaf btn-sm me-2">Home</a>
+        <a href="tel:+919172726276" class="btn btn-leaf btn-sm">Call Now</a>
       </nav>
     </div>
   </header>
@@ -192,7 +216,7 @@
       </p>
 
       <div class="d-flex gap-2 flex-wrap">
-        <a href="tel:+919000000000" class="btn btn-light">Call to Book</a>
+        <a href="tel:+919172726276" class="btn btn-light">Call to Book</a>
         <a href="#details" class="btn btn-outline-light">View Details</a>
       </div>
     </div>
@@ -202,7 +226,7 @@
   <main class="container container-block" id="details">
     <div class="row g-4">
       <!-- left -->
-      <div class="col-lg-8">
+      <div class="col-12">
         <div class="panel">
           <h3 class="mb-3" style="color:var(--leaf-dark)">What is included in the Full Body Check-up?</h3>
           <p class="small-muted">
@@ -232,44 +256,42 @@
           </ul>
 
           <h4 class="mt-4" style="color:var(--leaf-dark)">Frequently Asked Questions</h4>
-          <dl class="faq">
-            <dt>How long does the check-up take?</dt>
-            <dd>Approximately 45–60 minutes depending on history and concerns.</dd>
 
-            <dt>Will I need lab tests?</dt>
-            <dd>Only if the assessment identifies a need; otherwise you'll receive a personalised lifestyle plan.</dd>
+          <!-- CSS-only Accordion using details/summary -->
+          <div class="faq-accordion mt-2">
+            <details>
+              <summary>
+                <span class="faq-title">How long does the check-up take?</span>
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </summary>
+              <div class="answer">
+                <p>Approximately 45–60 minutes depending on history and concerns.</p>
+              </div>
+            </details>
 
-            <dt>When do I get my plan?</dt>
-            <dd>The personalised plan is provided the same day and includes simple, practical steps to start with.</dd>
-          </dl>
+            <details>
+              <summary>
+                <span class="faq-title">Will I need lab tests?</span>
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </summary>
+              <div class="answer">
+                <p>Only if the assessment identifies a need; otherwise you'll receive a personalised lifestyle plan.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span class="faq-title">When do I get my plan?</span>
+                <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </summary>
+              <div class="answer">
+                <p>The personalised plan is provided the same day and includes simple, practical steps to start with.</p>
+              </div>
+            </details>
+          </div>
         </div>
       </div>
 
-      <!-- right -->
-      <div class="col-lg-4">
-        <div class="cta-box mb-3">
-          <img src="dr-kalpana-small.jpg" alt="Dr Kalpana" class="rounded-img" style="height:160px; width:160px; margin:0 auto 12px; object-fit:cover;">
-          <h5 class="mb-1" style="color:var(--leaf-dark)">Consult with Dr. Kalpana</h5>
-          <p class="text-muted small mb-2">Naturopath & Aroma Therapist</p>
-
-          <h4 class="text-primary mb-2">📞 +91-90000-00000</h4>
-
-          <a href="tel:+919000000000" class="btn btn-leaf w-100 mb-2">Call Now</a>
-          <a href="https://wa.me/919000000000" class="btn btn-outline-leaf w-100">WhatsApp</a>
-
-          <p class="small-muted mt-3 mb-0">Clinic timings: 10:00 AM – 7:00 PM (Mon–Sat)</p>
-        </div>
-
-        <div class="panel">
-          <h6 class="mb-2" style="color:var(--leaf-dark)">Recommended if you:</h6>
-          <ul class="text-muted small">
-            <li>Feel low energy or persistent fatigue</li>
-            <li>Have irregular digestion or sleep problems</li>
-            <li>Want a proactive wellness plan</li>
-            <li>Are seeking natural, personalised care</li>
-          </ul>
-        </div>
-      </div>
     </div>
   </main>
 

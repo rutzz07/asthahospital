@@ -229,6 +229,16 @@
         transition: transform 0.25s ease, box-shadow 0.25s ease;
       }
 
+      /* Image shown at top of therapy cards */
+      .card-img-top {
+        width: 100%;
+        height: 190px; /* increased slightly */
+        object-fit: cover;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        display: block;
+      }
+
       .card:hover {
         transform: translateY(-6px);
         box-shadow: 0 18px 36px rgba(20,70,30,0.10);
@@ -413,6 +423,16 @@
         .testimonials-section .testimonial-card {
           flex: 0 0 85%;
         }
+      }
+      /* Responsive adjustments for therapy card images */
+      @media (max-width: 992px) {
+        .card-img-top { height: 160px; }
+      }
+      @media (max-width: 720px) {
+        .card-img-top { height: 140px; }
+      }
+      @media (max-width: 600px) {
+        .card-img-top { height: 120px; }
       }
     </style>
   </head>
@@ -603,10 +623,8 @@
           <!-- Shockwave Therapy -->
           <div class="col">
             <div class="card h-100">
+              <img src="shockwave-therapy-banner.jpg" alt="Shockwave Therapy" class="card-img-top">
               <div class="card-body">
-                <div class="icon-circle mb-2">
-                  <i class="bi bi-activity"></i>
-                </div>
                 <h5 class="card-title fw-bold">Shockwave Therapy</h5>
                 <p class="card-text text-muted">
                   Non-invasive therapy to help relieve chronic pain, stiffness
@@ -620,10 +638,8 @@
           <!-- Natural Healing for Migraine -->
           <div class="col">
             <div class="card h-100">
+              <img src="Migraine-Headaches.jpg" alt="Natural Healing for Migraine" class="card-img-top">
               <div class="card-body">
-                <div class="icon-circle mb-2">
-                  <i class="bi bi-brightness-high"></i>
-                </div>
                 <h5 class="card-title fw-bold">Natural Healing for Migraine</h5>
                 <p class="card-text text-muted">
                   Aroma therapy and naturopathic protocols aimed at reducing
@@ -637,10 +653,8 @@
           <!-- Full Body Check-up -->
           <div class="col">
             <div class="card h-100">
+              <img src="fullbodycheckup2.webp" alt="Full Body Check-up" class="card-img-top">
               <div class="card-body">
-                <div class="icon-circle mb-2">
-                  <i class="bi bi-body-text"></i>
-                </div>
                 <h5 class="card-title fw-bold">Full Body Check-up</h5>
                 <p class="card-text text-muted">
                   A holistic assessment of your lifestyle, stress, diet and
@@ -654,10 +668,8 @@
           <!-- Pain Therapy -->
           <div class="col">
             <div class="card h-100">
+              <img src="pain theropy.webp" alt="Pain Therapy" class="card-img-top">
               <div class="card-body">
-                <div class="icon-circle mb-2">
-                  <i class="bi bi-clipboard2-pulse"></i>
-                </div>
                 <h5 class="card-title fw-bold">Pain Therapy</h5>
                 <p class="card-text text-muted">
                   Tailored therapies for back pain, joint pain and muscular
@@ -671,10 +683,8 @@
           <!-- Natural Healing for Children Behaviour Problem -->
           <div class="col">
             <div class="card h-100">
+              <img src="children.jpg" alt="Children Behaviour Care" class="card-img-top">
               <div class="card-body">
-                <div class="icon-circle mb-2">
-                  <i class="bi bi-emoji-smile"></i>
-                </div>
                 <h5 class="card-title fw-bold">
                   Natural Healing for Children’s Behaviour
                 </h5>
@@ -796,7 +806,7 @@
                 <h4 class="mb-3" style="color:var(--leaf-green);">+91 9172726276</h4>
               </div>
 
-              <a href="tel:+919000000000" class="promo-btn-primary me-2 mb-2">
+              <a href="tel:+919172726276" class="promo-btn-primary me-2 mb-2">
                 <i class="bi bi-telephone-inbound me-1"></i> Call Now
               </a>
               <a href="https://wa.me/919172726276" class="promo-btn-outline mb-2">
@@ -829,5 +839,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
-
 

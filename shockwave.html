@@ -105,7 +105,7 @@
     .faq dt { font-weight:700; margin-top:14px; color:#0b3a22; }
     .faq dd { margin-bottom:8px; color:var(--muted); }
 
-    /* CTA box */
+    /* CTA box (used for panels) */
     .cta-box { background: linear-gradient(180deg,#fbfff9,#f0fbef); border-radius:12px; padding:18px; text-align:center; box-shadow: var(--card-shadow); }
     .cta-phone { font-weight:800; font-size:1.25rem; margin-bottom:8px; color: var(--leaf-dark); }
 
@@ -124,13 +124,73 @@
     .testimonials .quote { color:#0b3a22; font-weight:600; margin-bottom:6px; }
     .testimonials p { color:var(--muted); margin:0; }
 
-    /* Footer */
-    footer { background: #123a22; color: #dfeee1; padding:22px 0; text-align:center; margin-top:36px; border-top:4px solid rgba(255,255,255,0.02); }
+    /* Footer main styles */
+    footer {
+      background: #123a22;
+      color: #dfeee1;
+      padding:22px 0;
+      text-align:center;
+      margin-top:36px;
+      border-top:4px solid rgba(255,255,255,0.02);
+    }
+
+    /* Footer CTA (moved from sidebar) */
+    .footer-cta {
+      background: transparent;
+      border-radius:10px;
+      padding:16px;
+      margin-bottom:14px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+    }
+    .footer-cta .phone { font-weight:800; font-size:1.15rem; color:#fff; }
+    .footer-cta .btn { min-width:160px; }
+
+    .footer-quickfacts {
+      color: #e6f3e8;
+      font-size:0.95rem;
+      margin-top:8px;
+    }
+
+    /* FAQ Accordion (CSS-only using <details>) */
+    .faq-accordion details { border-top:1px solid rgba(20,70,30,0.04); padding:0; }
+    .faq-accordion details:first-child { border-top:none; }
+    .faq-accordion summary {
+      list-style:none;
+      cursor:pointer;
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      font-weight:700;
+      color: #0b3a22;
+      margin:0;
+      outline:none;
+    }
+    /* Remove default triangle */
+    .faq-accordion summary::-webkit-details-marker { display:none; }
+
+    .faq-accordion .faq-title { flex:1; }
+    .faq-accordion .faq-arrow {
+      width:18px; height:18px; display:inline-block; transition: transform .24s ease; flex-shrink:0;
+    }
+    .faq-accordion details[open] .faq-arrow { transform: rotate(180deg); }
+
+    .faq-accordion .answer { padding:12px 16px 18px 16px; color:var(--muted); }
+
+    /* Make summary keyboard-focus friendly */
+    .faq-accordion summary:focus { outline:3px solid rgba(47,143,74,0.12); border-radius:8px; }
 
     /* Responsive */
     @media (max-width: 992px) {
       .hero { flex-direction:column-reverse; gap:20px; padding:32px 0; }
       .hero-img{ height:220px; max-width:100%; }
+      .footer-cta { align-items:center; }
+      .footer-cta .btn { width:100%; max-width:320px; }
     }
     @media (max-width: 576px) {
       .hero { padding:24px 0; }
@@ -144,7 +204,7 @@
   <!-- TOP BAR -->
   <header class="topbar">
     <div class="container d-flex justify-content-between align-items-center">
-      <a class="brand" href="index3.html">
+      <a class="brand" href="index.html">
         <img src="asthafinallogo.png" alt="Astha logo">
         <div>
           <div class="title">Astha Clinic</div>
@@ -153,7 +213,7 @@
       </a>
 
       <nav>
-        <a href="index3.html" class="btn btn-outline-leaf btn-sm me-2">Back to Home</a>
+        <a href="index.html" class="btn btn-outline-leaf btn-sm me-2">Back to Home</a>
         <a href="mailto:info@aasthaclinik.com" class="btn btn-outline-secondary btn-sm">Contact</a>
       </nav>
     </div>
@@ -168,7 +228,7 @@
         <p class="hero-sub">Shockwave therapy uses focused acoustic waves to stimulate blood flow and tissue regeneration — often reducing pain, improving mobility and accelerating recovery without surgery.</p>
 
         <div class="d-flex gap-2 flex-wrap">
-          <a href="tel:+919000000000" class="btn btn-leaf">Call to Book</a>
+          <a href="tel:+919172726276" class="btn btn-leaf">Call to Book</a>
           <a href="mailto:info@aasthaclinik.com?subject=Shockwave%20Therapy%20Enquiry" class="btn btn-outline-leaf">Email for Details</a>
         </div>
 
@@ -183,7 +243,7 @@
     <!-- WHAT TO EXPECT -->
     <section class="mt-4">
       <div class="row g-4">
-        <div class="col-lg-8">
+        <div class="col-12">
           <div class="panel">
             <h3 class="mb-3" style="color:var(--leaf-dark)">What to expect during treatment</h3>
             <p class="small-muted">A typical session lasts 10–20 minutes depending on the area treated. After a short assessment, focused acoustic pulses are applied to the painful area. Most patients experience mild discomfort during the pulses and gradual improvement in the following weeks.</p>
@@ -201,40 +261,42 @@
             <p class="small-muted">Adults with chronic tendon or soft-tissue pain that hasn't responded to conservative care (rest, physiotherapy, injections). Not recommended for pregnant women, patients with clotting disorders, or over areas with infection or tumour — assessment required.</p>
 
             <h4 class="mt-4" style="color:var(--leaf-dark)">Frequently Asked Questions</h4>
-            <dl class="faq">
-              <dt>How many sessions will I need?</dt>
-              <dd>Most patients need 3–6 sessions spaced 1–2 weeks apart, although this varies with condition severity.</dd>
 
-              <dt>Is it painful?</dt>
-              <dd>There can be mild to moderate discomfort during the pulses; we adjust intensity for comfort. Post-treatment soreness is common and usually settles within 48–72 hours.</dd>
+            <!-- CSS-only Accordion using details/summary -->
+            <div class="faq-accordion mt-2">
 
-              <dt>When will I see improvement?</dt>
-              <dd>Many patients notice gradual improvement within 2–6 weeks as tissues remodel and pain decreases.</dd>
-            </dl>
-          </div>
-        </div>
+              <details>
+                <summary>
+                  <span class="faq-title">How many sessions will I need?</span>
+                  <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </summary>
+                <div class="answer">
+                  <p>Most patients need 3–6 sessions spaced 1–2 weeks apart, although this varies with condition severity.</p>
+                </div>
+              </details>
 
-        <!-- SIDEBAR CTA -->
-        <div class="col-lg-4">
-          <div class="cta-box panel text-center">
-            <img src="dr-kalpana-small.jpg" alt="Dr Kalpana" class="rounded-img" style="height:160px; width:160px; margin:0 auto 12px; object-fit:cover; border-radius:12px;">
-            <h5 class="mb-1" style="color:var(--leaf-dark);">Consult with Dr. Kalpana</h5>
-            <p class="small-muted mb-2">Naturopath & Aroma Therapist — personalised care</p>
+              <details>
+                <summary>
+                  <span class="faq-title">Is it painful?</span>
+                  <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </summary>
+                <div class="answer">
+                  <p>There can be mild to moderate discomfort during the pulses; we adjust intensity for comfort. Post-treatment soreness is common and usually settles within 48–72 hours.</p>
+                </div>
+              </details>
 
-            <div class="cta-phone mb-2">📞 +91-90000-00000</div>
-            <a href="tel:+919000000000" class="btn btn-leaf w-100 mb-2">Call to Book</a>
-            <a href="https://wa.me/919000000000" class="btn btn-outline-leaf w-100 mb-2">WhatsApp</a>
+              <details>
+                <summary>
+                  <span class="faq-title">When will I see improvement?</span>
+                  <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </summary>
+                <div class="answer">
+                  <p>Many patients notice gradual improvement within 2–6 weeks as tissues remodel and pain decreases.</p>
+                </div>
+              </details>
 
-            <p class="small-muted mt-3 mb-0">Clinic timings: 10:00 AM – 7:00 PM (Mon–Sat)</p>
-          </div>
+            </div>
 
-          <div class="panel mt-3">
-            <h6 class="mb-2" style="color:var(--leaf-dark)">Quick facts</h6>
-            <ul class="small-muted">
-              <li>Sessions: 10–20 mins</li>
-              <li>Typical course: 3–6 sessions</li>
-              <li>Recovery: Minimal downtime</li>
-            </ul>
           </div>
         </div>
       </div>
@@ -259,9 +321,20 @@
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (CTA moved here, without photo) -->
   <footer>
     <div class="container">
+      <!-- footer CTA -->
+      <div class="footer-cta">
+        <div class="phone">📞 +91 91727 26276</div>
+        <div class="d-flex gap-2 flex-wrap justify-content-center">
+          <a href="tel:+919172726276" class="btn btn-light">Call to Book</a>
+          <a href="https://wa.me/919172726276" class="btn btn-outline-light">WhatsApp</a>
+          <a href="mailto:info@aasthaclinik.com" class="btn btn-outline-light">Email</a>
+        </div>
+        <div class="footer-quickfacts small-muted">Clinic timings: 10:00 AM – 7:00 PM (Mon–Sat) · Sessions: 10–20 mins · Course: 3–6 sessions</div>
+      </div>
+
       <p class="mb-1">Astha — Naturopathy & Aroma Therapy • Dr. Kalpana</p>
       <p class="small-muted mb-0">© 2025 Astha. All Rights Reserved.</p>
     </div>

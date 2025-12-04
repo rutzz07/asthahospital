@@ -38,6 +38,15 @@
     .brand .clinic { font-weight:700; color:#0b3a22; }
     .brand .sub { color:var(--muted); font-size:0.9rem; }
 
+    /* Navbar responsiveness: keep Home/Call visible and stack on small screens */
+    .topbar nav { display:flex; gap:10px; align-items:center; }
+    @media (max-width:576px) {
+      .topbar .container { flex-wrap:wrap; gap:8px; }
+      .topbar nav { flex-direction:column; width:100%; }
+      .topbar nav a { width:100%; }
+      .brand { flex: 0 0 100%; }
+    }
+
     .btn-leaf {
       background: var(--leaf-green);
       color: #fff;
@@ -62,7 +71,7 @@
       min-height: 46vh;
       display: flex;
       align-items: center;
-      background-image: url('fullbodybg.jpg');
+      background-image: url('checkup.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -140,13 +149,35 @@
 
     .benefit-list li { margin-bottom:10px; color:#214d2f; }
 
+ /* Footer main styles */
     footer {
       background: #123a22;
       color: #dfeee1;
+      padding:22px 0;
       text-align:center;
-      padding:20px 0;
       margin-top:36px;
-      border-top: 4px solid rgba(255,255,255,0.02);
+      border-top:4px solid rgba(255,255,255,0.02);
+    }
+
+    /* Footer CTA (moved from sidebar) */
+    .footer-cta {
+      background: transparent;
+      border-radius:10px;
+      padding:16px;
+      margin-bottom:14px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+    }
+    .footer-cta .phone { font-weight:800; font-size:1.15rem; color:#fff; }
+    .footer-cta .btn { min-width:160px; }
+
+    .footer-quickfacts {
+      color: #e6f3e8;
+      font-size:0.95rem;
+      margin-top:8px;
     }
 
     /* FAQ: CSS-only accordion using details/summary */
@@ -298,6 +329,16 @@
   <!-- FOOTER -->
   <footer>
     <div class="container text-center">
+       <!-- footer CTA -->
+      <div class="footer-cta">
+        <div class="phone">📞 +91 91727 26276</div>
+        <div class="d-flex gap-2 flex-wrap justify-content-center">
+          <a href="tel:+919172726276" class="btn btn-light">Call to Book</a>
+          <a href="https://wa.me/919172726276" class="btn btn-outline-light">WhatsApp</a>
+          <a href="mailto:info@aasthaclinik.com" class="btn btn-outline-light">Email</a>
+        </div>
+        <div class="footer-quickfacts small-muted">Clinic timings: 10:00 AM – 7:00 PM (Mon–Sat) · Sessions: 10–20 mins · Course: 3–6 sessions</div>
+      </div>
       <p class="mb-1">Astha — Full Body Wellness • Dr. Kalpana</p>
       <p class="small-muted mb-0">© 2025 Astha Clinic. All Rights Reserved.</p>
     </div>

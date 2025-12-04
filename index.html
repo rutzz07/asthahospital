@@ -96,6 +96,26 @@
         box-shadow: 0 8px 20px rgba(47,143,74,0.12);
       }
 
+      /* Transparent navbar buttons (minimal, link-like) */
+      .promo-btn-transparent {
+        background: transparent;
+        border: none;
+        padding: 9px 18px;
+        color: var(--leaf-green);
+        font-weight: 600;
+        border-radius: 6px;
+        text-decoration: none;
+        display:inline-block;
+        transition: all .14s ease;
+      }
+
+      .promo-btn-transparent:hover {
+        background: rgba(47,143,74,0.06);
+        color: var(--leaf-green-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(47,143,74,0.06);
+      }
+
       /* ---------- HERO CAROUSEL ---------- */
       .hero-carousel .carousel-item {
         height: 70vh;
@@ -345,7 +365,8 @@
         }
 
         .promo-btn-primary,
-        .promo-btn-outline {
+        .promo-btn-outline,
+        .promo-btn-transparent {
           width: 100%;
           margin-bottom: 8px;
         }
@@ -457,9 +478,10 @@
           class="collapse navbar-collapse justify-content-end"
           id="navbarNav"
         >
-          <a href="bookap.html" class="promo-btn-primary"
-            >Book Appointment</a
-          >
+          <a href="index.html" class="promo-btn-transparent me-2">Home</a>
+          <a href="services.html" class="promo-btn-transparent me-3">Services</a>
+          <a href="bookap.html" class="promo-btn-primary">Book Appointment</a>
+        
         </div>
       </div>
     </nav>

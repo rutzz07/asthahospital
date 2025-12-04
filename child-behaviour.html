@@ -59,13 +59,22 @@
     .brand .clinic{ font-weight:700; color:var(--leaf-dark); }
     .brand .sub{ color:var(--muted); font-size:.9rem; }
 
+    /* Navbar responsiveness: keep Home/Call visible and stack on small screens */
+    .topbar nav { display:flex; gap:10px; align-items:center; }
+    @media (max-width:576px) {
+      .topbar .container { flex-wrap:wrap; gap:8px; }
+      .topbar nav { flex-direction:column; width:100%; }
+      .topbar nav a { width:100%; }
+      .brand { flex: 0 0 100%; }
+    }
+
     .btn-leaf { background:var(--leaf-green); color:#fff; border:0; padding:8px 14px; border-radius:8px; font-weight:700; }
     .btn-outline-leaf { background:transparent; color:var(--leaf-green); border:2px solid var(--leaf-green); padding:8px 12px; border-radius:8px; font-weight:700; }
 
     /* hero */
-    .hero{ padding:54px 0; }
+    .hero{ padding:24px 0 12px 0; }
     .hero-panel{
-      max-width:1100px;
+      max-width:100%;
       margin:0 auto;
       background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.94));
       border-radius:14px;
@@ -96,7 +105,36 @@
     /* testimonials */
     .testimonial { background:#fff; border-radius:12px; padding:12px; box-shadow:0 8px 18px rgba(2,6,23,0.04); }
 
-    footer{ margin-top:28px; background: rgba(2,40,70,0.95); color:#d9eefc; text-align:center; padding:18px; border-radius:8px; margin-left:12px; margin-right:12px; }
+    /* Footer main styles */
+    footer {
+      background: #123a22;
+      color: #dfeee1;
+      padding:22px 0;
+      text-align:center;
+      margin-top:36px;
+      border-top:4px solid rgba(255,255,255,0.02);
+    }
+
+    /* Footer CTA (moved from sidebar) */
+    .footer-cta {
+      background: transparent;
+      border-radius:10px;
+      padding:16px;
+      margin-bottom:14px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+    }
+    .footer-cta .phone { font-weight:800; font-size:1.15rem; color:#fff; }
+    .footer-cta .btn { min-width:160px; }
+
+    .footer-quickfacts {
+      color: #e6f3e8;
+      font-size:0.95rem;
+      margin-top:8px;
+    }
 
     /* small utility */
     .small-muted { color:var(--muted); font-size:.95rem; }
@@ -181,8 +219,8 @@
             </div>
           </div>
 
-          <div style="width:280px; min-width:180px;">
-            <img src="child-therapy.jpg" alt="Child therapy session" class="rounded-img" style="height:200px;">
+          <div style="width:420px; min-width:280px;">
+            <img src="childtheerapyinner.jpg" alt="Child therapy session" class="rounded-img" style="height:300px;">
           </div>
         </div>
       </div>
@@ -299,6 +337,16 @@
     <!-- FOOTER -->
     <footer role="contentinfo">
       <div class="container">
+         <!-- footer CTA -->
+      <div class="footer-cta">
+        <div class="phone">📞 +91 91727 26276</div>
+        <div class="d-flex gap-2 flex-wrap justify-content-center">
+          <a href="tel:+919172726276" class="btn btn-light">Call to Book</a>
+          <a href="https://wa.me/919172726276" class="btn btn-outline-light">WhatsApp</a>
+          <a href="mailto:info@aasthaclinik.com" class="btn btn-outline-light">Email</a>
+        </div>
+        <div class="footer-quickfacts small-muted">Clinic timings: 10:00 AM – 7:00 PM (Mon–Sat) · Sessions: 10–20 mins · Course: 3–6 sessions</div>
+      </div>
         <div style="font-weight:700">Astha — Children Behaviour Support</div>
         <div class="small-muted">© 2025 Astha Clinic. All Rights Reserved.</div>
       </div>
